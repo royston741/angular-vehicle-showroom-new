@@ -1,0 +1,81 @@
+.vehicle_list_container {
+    display: grid;
+    grid-template-columns: 1.5fr 4fr;
+}
+
+.price_filter input {
+    padding: 8px;
+    width: 100%;
+    border-radius: 4px;
+    border: none;
+}
+
+.price_filter {
+    display: flex;
+    flex-direction: column;
+}
+
+label {
+    margin: 20px 0 10px;
+}
+
+.all_filters {
+    /* margin: 10px; */
+    padding: 30px 15px;
+    /* box-shadow: rgba(0, 0, 0, 0.24) 0px 3px 8px; */
+}
+
+.search_btn {
+    margin: 20px 0;
+    padding: 10px;
+    border: none;
+    background-color: #3676ee;
+    border-radius: 4px;
+    color: white;
+    font-weight: 600;
+}
+
+.vehicle_list {
+    display: flex;
+    flex-wrap: wrap;
+    height: 80vh;
+    overflow-y: scroll;
+    margin: 20px 0;
+}
+
+.vehicle {
+    background-color: white;
+    width: 200px;
+    margin: 10px;
+    border-radius: 4px;
+    padding: 10px;
+    height: 370px;
+    cursor: pointer;
+    box-shadow: rgba(0, 0, 0, 0.24) 0px 3px 8px;
+}
+
+.vehicle img {
+    max-width: 90%;
+    max-height: 100%;
+}
+
+.img_container {
+    overflow: hidden;
+    width: 100%;
+    display: flex;
+    justify-content: center;
+    margin-bottom: 10px;
+    height: 250px;
+    /* background-color: red; */
+}
+
+
+h3 {
+    margin: 7px 0;
+}
+
+.err_in_list {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}

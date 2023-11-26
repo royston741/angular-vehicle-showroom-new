@@ -1,0 +1,14 @@
+<div *ngIf="errMssg.length > 0">
+  <p *ngFor="let err of errMssg" class="err">{{ err }}</p>
+</div>
+<app-table
+  [pageConfig]="page"
+  [dataList]="vehicles"
+  tabelName="vehicle"
+  filterInputPlaceHolder="Name"
+  (pageChangeEvent)="getData($event)"
+  (pageSizeChangeEvent)="onPageSizeChange($event)"
+  (sortEvent)="handelSorting($event)"
+  (filterEvent)="handelFilter($event)"
+  (actionEvent)="handelActions($event)"
+></app-table>

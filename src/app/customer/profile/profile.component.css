@@ -1,0 +1,80 @@
+
+textarea{
+    width: 100%;
+    padding: 14px 13px;
+    border-radius: 3px;
+    border: 1px solid black;
+    margin: 1px 0;
+    outline: none;
+}
+
+.err_mssg{
+    font-size: 0.8rem;
+    color: red;
+}
+
+.err{
+    border: 1px solid red;
+}
+
+.address_container{
+    height: 100px;
+}
+
+.success{
+    color: green;
+    border: 1px solid green;
+    background-color: rgb(173, 210, 173);
+    padding: 12px;
+    text-align: center;
+    margin: 10px 0;
+}
+
+.errMssg{
+    border: 1px solid rgb(133, 22, 22);
+    background-color: rgb(218, 154, 154);
+    margin: 10px 0;
+    padding: 10px;
+    border-radius: 4px;
+}
+
+.errMssg p{
+    font-size: 0.9rem;
+    color: rgb(133, 22, 22);
+    padding: 4px 0 2px 5px;
+}
+
+button{
+    padding: 13px 10px;
+    border: none;
+    width: 100%;
+    color: white;
+    font-weight: 600;
+    border-radius: 4px;
+    margin-bottom: 3px;
+}
+
+.btn_color{
+    background-color: var(--we-page-color);
+
+}
+
+.transparent_btn{
+    background-color: transparent;
+    border: 2px solid var(--we-page-color);
+    color: var(--we-page-color);
+}
+
+.success_msg{
+    color: green;
+    border: 1px solid green;
+    background-color: rgb(173, 210, 173);
+    padding: 12px;
+    text-align: center;
+    margin: 10px 0;
+    width: 100%;
+}
+
+button:disabled{
+    background-color:var(--disabled);
+}

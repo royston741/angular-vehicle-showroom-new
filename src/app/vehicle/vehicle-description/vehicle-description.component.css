@@ -1,0 +1,147 @@
+.vehicle {
+    display: grid;
+    grid-template-columns: 2fr 4fr;
+    width: 900px;
+    background-color: white;
+    box-shadow: rgba(0, 0, 0, 0.24) 0px 3px 8px;
+
+}
+
+.vehicle img {
+    max-width: 100%;
+    height: 100%;
+}
+
+.rating {
+    display: flex;
+}
+
+.vehcile_d {
+    padding: 30px 20px;
+}
+
+.gap {
+    margin-top: 10px;
+}
+
+.v_name {
+    margin-top: 15px;
+}
+
+.quantity {
+    display: flex;
+    align-items: center;
+}
+
+.quantity button {
+    padding: 3px 10px;
+    font-weight: 600;
+}
+
+.quantity p {
+    margin: 0 10px;
+}
+
+.fuel_type {
+    display: none;
+}
+
+.fuel_type_opt {
+    display: flex;
+    font-size: 0.7rem;
+    font-weight: 600;
+}
+
+.fuel_type_opt div {
+    margin-right: 10px;
+    padding: 7px;
+    border-radius: 4px;
+
+}
+
+.fuel-type-active {
+    background-color: #3676ee;
+    color: white;
+}
+
+.fuel_type_label {
+    width: 70px;
+    text-align: center;
+    cursor: pointer;
+}
+
+.color_type_opt {
+    display: flex;
+}
+
+.color_type_opt input {
+    display: none;
+}
+
+.color_type_label {
+    background-color: red;
+    padding: 10px 17px;
+    margin: 10px;
+    border-radius: 4px;
+    cursor: pointer;
+}
+
+.red {
+    background-color: red;
+}
+
+.pink {
+    background-color: pink;
+}
+
+.black {
+    background-color: black;
+}
+
+.color-type-active {
+    border: 3px solid #3676ee;
+}
+
+.fuel_type_opt {
+    margin-top: 8px;
+}
+
+.color_type_opt {
+    margin-top: 20px;
+}
+
+.vehicle_btns button {
+    margin-top: 10px;
+    background-color: #3676ee;
+    border: none;
+    color: white;
+    padding: 10px;
+    margin-right: 10px;
+    border-radius: 4px;
+    font-weight: 600;
+}
+
+.dis_add div {
+    margin-top: 10px;
+}
+
+.vehicle_desc_container {
+    display: flex;
+    justify-content: center;
+    margin-top: 100px;
+}
+
+.add_cart_success{
+    background-color: black;
+    color: goldenrod;
+    position: absolute;
+    padding: 10px;
+    width: 300px;
+    height: 50px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    border-radius: 4px;
+    top: 0;
+    margin: 90px;
+}

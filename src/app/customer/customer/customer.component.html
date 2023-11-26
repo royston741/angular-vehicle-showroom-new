@@ -1,0 +1,34 @@
+<header>
+    <nav>
+        <div class="heading_menu">
+            <h1>MyDrive</h1>
+            <ul class="menu">
+                <a (click)="navigateService.navigateCustomerHome()" routerLink="/customer/vehicleList"
+                    routerLinkActive="active">
+                    <li>Vehicles</li>
+                </a>
+                <a routerLinkActive="active" routerLink="/customer/allOrders">
+                    <li (click)="navigateService.navigateToCustomerOrder()">Orders</li>
+                </a>
+                <a routerLinkActive="active" routerLink="/customer/cart">
+                    <li (click)="navigateService.navigateToCustomerCart()">Cart</li>
+                </a>
+            </ul>
+        </div>
+
+        <ul class="profile_container">
+            <li class="profile" (click)="navigateService.navigateToCustomerProfile()">
+                <p>
+                    {{name}}
+                </p>
+                <span class="material-symbols-outlined">
+                    person
+                </span>
+            </li>
+            <li>
+                <button class="log_out_btn" (click)="logOut()">Log out</button>
+            </li>
+        </ul>
+    </nav>
+</header>
+<router-outlet></router-outlet>

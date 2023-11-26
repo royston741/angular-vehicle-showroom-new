@@ -1,0 +1,12 @@
+.align_content{
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+}
+
+.details{
+    background-color: white;
+    width: 300px;
+    padding: 10px;
+    border-radius: 4px;
+}

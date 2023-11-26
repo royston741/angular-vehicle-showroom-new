@@ -1,0 +1,84 @@
+.order_item {
+    background-color: white;
+    width: 350px;
+    padding: 10px;
+    margin-bottom: 10px;
+}
+
+.gap {
+    margin: 7px;
+}
+
+.v_type {
+    background-color: black;
+    padding: 7px;
+    color: white;
+    display: inline;
+    font-size: 0.7rem;
+    border: none;
+    border-radius: 4px;
+}
+
+.order_total {
+    width: 350px;
+}
+
+.order_total {
+    display: flex;
+    align-items: center;
+    margin: 20px 10px;
+}
+
+.order_total p {
+    margin-left: 10px;
+}
+
+.order_p {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+}
+
+.confirm_order_btn {
+    background-color: var(--we-page-color);
+    padding: 10px;
+    border: none;
+    color: white;
+    width: 100%;
+    font-weight: 600;
+    border-radius: 4px;
+}
+
+.cancel_order_btn{
+    background-color:transparent;
+    padding: 10px;
+    border: none;
+    color: var(--we-page-color);
+    width: 100%;
+    font-weight: 600;
+    border-radius: 4px;
+    border: 2px solid var(--we-page-color);
+    margin-top: 10px;
+}
+
+.order_item_container {
+    height: 448px;
+    overflow: auto;
+}
+
+.order_btns {
+    display: flex;
+    justify-content: space-between;
+    margin: 10px 0;
+}
+
+.order_btns button {
+    padding: 10px;
+    width: 45%;
+    background-color: var(--we-page-color);
+    border: none;
+    color: white;
+    font-weight: 600;
+    border-radius: 4px;
+}

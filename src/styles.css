@@ -1,0 +1,33 @@
+/* You can add global styles to this file, and also import other style files */
+* {
+    padding: 0;
+    margin: 0;
+    box-sizing: border-box;
+    text-decoration: none;
+    list-style: none;
+}
+
+:root{
+    --we-page-color: #3676ee;
+    --disabled:#3676ee8a;
+}
+
+body {
+    background-color: aliceblue;
+    font-family: "Poppins", sans-serif;
+}
+
+.align_center_screen {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: 100vh;
+}
+
+a,button{
+    cursor: pointer;
+}
+
+.disable_btn{
+    background-color:var(--disabled);
+}

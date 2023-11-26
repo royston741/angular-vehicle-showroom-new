@@ -1,0 +1,48 @@
+<div class="vehicle_list_container">
+    <div class="all_filters">
+        <div class="vehicle_list_filter_container">
+
+            <app-select selectFor="Sort by" [options]="['All','rating',
+        'price --- low to high',
+        'price -- high to low']" (selectEventEmitter)="onSelectSortBy($event)"></app-select>
+
+            <app-select selectFor="Vehicle type :" [options]="['All','CAR',
+        'BIKE']" (selectEventEmitter)="onSelectVehicleType($event)"></app-select>
+
+            <app-select *ngIf="filter.vehicleType==='BIKE'" selectFor="Two wheeler type :" [options]="['All','SCOOTY',
+        'SPORTS']" (selectEventEmitter)="onSelectTwoWheelerType($event)"></app-select>
+        </div>
+
+        <div class="price_filter">
+            <Label>Start price : </Label>
+            <input #element type="number" [value]="filter.startingPrice"
+                (change)="onPriceChange({type:'start',value:element.value})" [min]="startPrice">
+            <Label>End price : </Label>
+            <input #element2 type="number" [value]="filter.endingPrice"
+                (change)="onPriceChange({type:'end',value:element2.value})" [max]="endPrice">
+            <button class="search_btn" (click)="getAllVehiclesData()">Search</button>
+        </div>
+    </div>
+
+    <ul [ngClass]="vehicles.length>0?'vehicle_list':'err_in_list'">
+        <li class="vehicle" *ngFor="let vehicle of vehicles" 
+            (click)="onNavigateToVehicleDescription(vehicle.id)">
+            <div>
+                <div class="img_container">
+                    <img src={{vehicle.imgUrl}} alt={{vehicle.imgUrl}} style="max-width: 300px; max-height: 300px;">
+                </div>
+
+                <span class="vehicle_desc">
+                    <p>{{vehicle.rating}} &#9733;</p>
+                    <h3> {{vehicle.name}} </h3>
+                    <p>Price : {{vehicle.price | currency:'INR'}}</p>
+                </span>
+            </div>
+        </li>
+        <div *ngFor="let err of errMssg" class="">
+            <h2>{{err}}</h2>
+        </div>
+    </ul>
+
+
+</div>

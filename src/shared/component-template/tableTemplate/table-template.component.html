@@ -1,0 +1,107 @@
+<div *ngIf="dataList.length > 0; else empyty" class="table_container">
+  <div class="filter_container" *ngIf="tabelName!='vehicle'">
+    <input
+      type="text"
+      [(ngModel)]="filterInput"
+      [placeholder]="filterInputPlaceHolder"
+    />
+    <button (click)="onFilterBtnClick()">Filter</button>
+  </div>
+  <div>
+    <table>
+      <thead>
+        <tr>
+          <th *ngFor="let header of dataList[0] | keyvalue : sortNull">
+            <div class="column_with_sort">
+              {{ header.key == "id" ? "No" : transform(header.key) }}
+              <div  class="sort_btns" *ngIf="header.key != 'id' && header.key!='name'">
+                <span
+                  class="material-symbols-outlined"
+                  (click)="onSort('ASC', header.key)"
+                >
+                  arrow_drop_up
+                </span>
+                <span
+                  class="material-symbols-outlined"
+                  (click)="onSort('DESC', header.key)"
+                >
+                  arrow_drop_down
+                </span>
+              </div>
+            </div>
+          </th>
+          <th class="adjust_width">Actions</th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr *ngFor="let data of dataList; index as i">
+          <td>{{ i + 1 }}</td>
+          <td *ngFor="let value of data | keyvalue : sortNull | slice : 1">
+            {{ value.value }}
+          </td>
+          <app-actions
+            [tableName]="tabelName"
+            [id]="data.id"
+            [name]="data.name"
+            (btnClickEvent)="onAction($event)"
+          ></app-actions>
+        </tr>
+      </tbody>
+    </table>
+  </div>
+  <div class="page_size_container">
+    <label for="pageSizeOptions">Page size :</label>
+    <select
+      name="pageSize"
+      id="pageSizeOptions"
+      (change)="selectPageSize($event)"
+    >
+      <option
+        *ngFor="let num of numberArray(pageConfig.totalItems)"
+        value="{{ num }}"
+      >
+        {{ num }}
+      </option>
+    </select>
+  </div>
+  <div class="pagination_btns">
+    <button
+      (click)="onPageChange('previous')"
+      [disabled]="pageConfig.currentPage === 0"
+    >
+      Prev
+    </button>
+    <button
+      *ngIf="pageConfig.totalPages > 0"
+      (click)="onPageChange(1)"
+      [class.page_btn_active]="pageConfig.currentPage == 0"
+    >
+      1
+    </button>
+    <button
+      *ngIf="pageConfig.totalPages > 1"
+      (click)="onPageChange(2)"
+      [class.page_btn_active]="pageConfig.currentPage == 1"
+    >
+      2
+    </button>
+    <button
+      (click)="onPageChange('foward')"
+      [disabled]="pageConfig.currentPage === pageConfig.totalPages - 1"
+    >
+      Next
+    </button>
+  </div>
+  <div class="model" *ngIf="confirmDelete">
+    <div class="confirm-box">
+      <p>Confirm delete {{ deleteCustomerDetails.name }}</p>
+      <div>
+        <button class="confirm_delete" (click)="onDelete()">Delete</button>
+        <button class="confirm_cancel" (click)="onCancel()">Cancel</button>
+      </div>
+    </div>
+  </div>
+</div>
+<ng-template #empyty>
+  <p style="text-align: center">No details</p>
+</ng-template>

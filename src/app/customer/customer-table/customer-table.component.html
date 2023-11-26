@@ -1,0 +1,16 @@
+<div class="customer_table_container">
+  <h1>Customer details</h1>
+  <div *ngIf="errMssg.length > 0">
+    <p *ngFor="let err of errMssg" class="err">{{ err }}</p>
+  </div>
+  <app-table
+    [pageConfig]="page"
+    [dataList]="customers"
+    filterInputPlaceHolder="Name, phoneNo or address"
+    (pageChangeEvent)="getData($event)"
+    (pageSizeChangeEvent)="onPageSizeChange($event)"
+    (sortEvent)="handelSorting($event)"
+    (filterEvent)="handelFilter($event)"
+    (actionEvent)="handelActions($event)"
+  ></app-table>
+</div>

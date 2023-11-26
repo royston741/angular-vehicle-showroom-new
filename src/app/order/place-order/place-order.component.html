@@ -1,0 +1,33 @@
+<div class="align_center_screen">
+    <div class="order_p">
+
+        <div *ngIf="!plcaceOrderSuccess">
+            <div class="order_item_container">
+                <div class="order_item" *ngFor="let item of order.orderItem">
+                    <h2 class="gap">{{item.vehicle.name}}</h2>
+                    <p class="gap v_type">{{item.vehicle.vehicleType}}</p>
+                    <p class="gap"><b>Color : </b>{{item.color}}</p>
+                    <p class="gap"><b>Initial price : </b> {{item.initialPrice | currency:'INR'}}</p>
+                    <p class="gap"><b>Discount : </b>{{item.discount | number: '1.0-0'}}</p>
+                    <p class="gap"><b>Additional charges : </b>{{item.additionalCharges | number: '1.0-0'}}</p>
+                    <p class="gap"><b>Quantity : </b>{{item.quantity}}</p>
+                </div>
+            </div>
+
+            <div class="order_total">
+                <h2>Order total :</h2>
+                <p> {{order.total | currency:'INR'}}</p>
+            </div>
+            <button class="confirm_order_btn" (click)="plcaeOrder()">Confirm order</button>
+            <button class="cancel_order_btn" (click)="navigateService.navigateCustomerHome()">Cancel</button>
+        </div>
+        <div *ngIf="plcaceOrderSuccess">
+            <h2>Order plcaced successfully.</h2>
+            <div class="order_btns">
+                <button (click)="navigateService.navigateToCustomerOrder()">Orders</button>
+                <button (click)="navigateService.navigateCustomerHome()">home</button>
+            </div>
+        </div>
+    </div>
+
+</div>
