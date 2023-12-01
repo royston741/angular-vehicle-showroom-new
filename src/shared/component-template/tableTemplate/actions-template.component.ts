@@ -7,14 +7,13 @@ import { Component, EventEmitter, Input, OnInit, Output } from '@angular/core';
       delete
     </button> -->
     <!-- <button *ngIf="tableName!='vehicle'" class="table_btn edit_btn" (click)="onEditBtnClick()">Edit</button> -->
-    <button class="table_btn view_btn" (click)="onViewBtnClick()">View</button>
+    <button class="table_btn view_btn" (click)="onViewBtnClick()">View {{viewText}}</button>
   </td>`,
   styleUrls: ['./table-template.component.css'],
 })
-export class ActionsComponent implements OnInit{
-  ngOnInit(): void {
-    console.log(this.tableName)
-  }
+export class ActionsComponent {
+
+  @Input() viewText=""
   @Input() tableName=""
   @Input() id = 0;
   @Input() name = '';
@@ -23,6 +22,10 @@ export class ActionsComponent implements OnInit{
     id: number;
     name: string;
   }>();
+
+  // ngOnInit(): void {
+  //   console.log(this.tableName)
+  // }
 
   onDeleteBtnClick() {
     this.btnClickEvent.emit({ type: 'delete', id: this.id, name: this.name });

@@ -1,11 +1,12 @@
 <div class="align_center_screen">
     <div class="details" >
         <div class="align_content"><h2>Name : </h2>{{orderItem.vehicle.name}}</div>
+        <div class="align_content"><h2>Booking date : </h2>{{orderItem.orderItemBuyDate}}</div>
         <div class="align_content"><h2>Vehicle type : </h2>{{orderItem.vehicle.vehicleType}}</div>
         <div class="align_content"><h2>Color : </h2>{{orderItem.color}}</div>
         <div class="align_content"><h2>Fuel type : </h2>{{orderItem.fuelType}}</div>
-        <div class="align_content"><h2>initial price : </h2>{{orderItem.initialPrice}}</div>
-        <div class="align_content"><h2>total : </h2>{{orderItem.finalPrice}}</div>
         <div class="align_content"><h2>Quantity : </h2>{{orderItem.quantity}}</div>
+        <div class="align_content"><h2>initial price : </h2>{{orderItem.initialPrice | currency:'INR'}}</div>
+        <div class="align_content"><h2>total : </h2>{{orderItem.finalPrice | currency:'INR'}}</div>
     </div>
 </div>

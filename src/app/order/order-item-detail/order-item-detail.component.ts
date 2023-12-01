@@ -9,7 +9,28 @@ import { Item } from 'src/shared/model/Item';
   styleUrls: ['./order-item-detail.component.css']
 })
 export class OrderItemDetailComponent implements OnInit{
-  orderItem!: Item;
+  orderItem: Item={
+    id: null,
+    additionalCharges: 0,
+    color: '',
+    discount: 0,
+    finalPrice: 0,
+    fuelType: '',
+    initialPrice: 0,
+    itemType: '',
+    quantity: 0,
+    vehicle:{
+      id: 0,
+      name: '',
+      price: 0,
+      rating: 0,
+      vehicleType: '',
+      twoWheelerType: '',
+      imgUrl: '',
+      description: ''
+    },
+    orderItemBuyDate: new Date()
+  };
   constructor(
     private orderItemService: OrderItemService,
     private route: ActivatedRoute
@@ -23,7 +44,6 @@ export class OrderItemDetailComponent implements OnInit{
   getData(id: number) {
     this.orderItemService.getOrderItemById(id).subscribe((res) => {
       this.orderItem = res.responseData;
-      console.log(this.orderItem)
       // console.log(res);
     });
   }

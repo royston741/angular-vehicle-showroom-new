@@ -1,16 +1,26 @@
 <div class="customer_table_container">
+  <div class="excel_filter">
+    <h3>Orders sheet :</h3>
+    <div>
+      <div>
+        <Label>Start date : </Label>
+        <input type="date" name="startDate" [(ngModel)]="startDate" [value]="startDate">
+      </div>
+      <div>
+        <Label>end date : </Label>
+        <input type="date" name="endDate" [(ngModel)]="endDate" [value]="endDate">
+      </div>
+      <button (click)="onFetch()" class="fetxh_btn">Fetch data</button>
+    </div>
+    <div class="err" *ngIf="dateErrMssg.length>0">{{dateErrMssg}}</div>
+
+  </div>
   <h1>Customer details</h1>
   <div *ngIf="errMssg.length > 0">
     <p *ngFor="let err of errMssg" class="err">{{ err }}</p>
   </div>
-  <app-table
-    [pageConfig]="page"
-    [dataList]="customers"
-    filterInputPlaceHolder="Name, phoneNo or address"
-    (pageChangeEvent)="getData($event)"
-    (pageSizeChangeEvent)="onPageSizeChange($event)"
-    (sortEvent)="handelSorting($event)"
-    (filterEvent)="handelFilter($event)"
-    (actionEvent)="handelActions($event)"
-  ></app-table>
+  <app-table [pageConfig]="page" [dataList]="customers" filterInputPlaceHolder="Name, phoneNo or address"
+    (pageChangeEvent)="getData($event)" (pageSizeChangeEvent)="onPageSizeChange($event)"
+    (sortEvent)="handelSorting($event)" (filterEvent)="handelFilter($event)"
+    (actionEvent)="handelActions($event)" viewFor="Orders"></app-table>
 </div>

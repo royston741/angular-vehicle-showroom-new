@@ -53,4 +53,10 @@ export class VehicleService {
       `${this.baseUrl}getExtraChargeByColor`
     );
   }
+
+  getVehicleType(): Observable<Response> {
+    return this.http.get<Response>(
+      `${this.baseUrl}getVehicleType`
+    );
+  }
 }

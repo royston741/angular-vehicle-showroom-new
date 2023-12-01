@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, EventEmitter, OnInit, Output } from '@angular/core';
 import { Router } from '@angular/router';
 import { CartService } from 'src/app/services/cart.service';
 import { ShareDataService } from 'src/app/services/shareData.service';
@@ -11,6 +11,7 @@ import { Item } from 'src/shared/model/Item';
   styleUrls: ['./cart.component.css']
 })
 export class CartComponent implements OnInit {
+
   cart: {
     cartItems: Item[],
     cartTotal: number
@@ -30,6 +31,7 @@ export class CartComponent implements OnInit {
     this.cartService.getCartByCustomerId(id).subscribe({
       next: (response) => {
         this.cart = response.responseData;
+        this.cart.cartItems.reverse()
       }, error: (error) => {
         console.log(error)
       }
@@ -40,7 +42,7 @@ export class CartComponent implements OnInit {
     const id = JSON.parse(this.storageService.getItem("user")).id;
     this.cartService.removeItemFromCart(item, id).subscribe({
       next: (response) => {
-        console.log(response)
+        response.success && this.storageService.storeItem("added", "1");
         this.getCartData()
       }, error: (error) => {
         console.log(error)
@@ -52,6 +54,7 @@ export class CartComponent implements OnInit {
     const id = JSON.parse(this.storageService.getItem("user")).id;
     this.cartService.clearCart(id).subscribe({
       next: (response) => {
+        response.success && this.storageService.storeItem("added", "1");
         this.getCartData()
       }, error: (error) => {
         console.log(error)

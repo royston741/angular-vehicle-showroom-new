@@ -21,9 +21,6 @@
 
 .order_total {
     width: 350px;
-}
-
-.order_total {
     display: flex;
     align-items: center;
     margin: 20px 10px;
@@ -50,8 +47,8 @@
     border-radius: 4px;
 }
 
-.cancel_order_btn{
-    background-color:transparent;
+.cancel_order_btn {
+    background-color: transparent;
     padding: 10px;
     border: none;
     color: var(--we-page-color);
@@ -63,7 +60,7 @@
 }
 
 .order_item_container {
-    height: 448px;
+    height: 494px;
     overflow: auto;
 }
 
@@ -81,4 +78,14 @@
     color: white;
     font-weight: 600;
     border-radius: 4px;
+}
+
+
+@media screen and (max-width:419px) {
+    .order_item {
+        width: 100%;
+    }
+    .order_total{
+        width: 100%;
+    }
 }

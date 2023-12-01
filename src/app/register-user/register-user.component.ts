@@ -74,7 +74,7 @@ export class RegisterUserComponent implements OnInit {
   }
 
   validateEmail(value: string) {
-    return value.trim().includes("@")&& value.length>5;
+    return value.trim().includes("@");
   }
 
   validatePassword(value: string) {

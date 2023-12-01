@@ -1,5 +1,6 @@
 import { Component } from '@angular/core';
 import { Router } from '@angular/router';
+import { OrderItemService } from 'src/app/services/orderItem.service';
 import { UserService } from 'src/app/services/user.service';
 import { Customer } from 'src/shared/model/Customer';
 import { Response } from 'src/shared/model/Response';
@@ -26,9 +27,14 @@ export class CustomerTableComponent {
   filterValue = '';
   errMssg = [];
 
+  startDate=new Date();
+  endDate=new Date();
+  dateErrMssg=""
+
   constructor(
     private customerService:UserService,
-    private router: Router
+    private router: Router,
+    private orderItemService:OrderItemService
   ) { }
 
 
@@ -69,13 +75,33 @@ export class CustomerTableComponent {
         });
   }
 
+  
+  onFetch() {
+    // set err message empty
+    this.dateErrMssg = "";
+    // convert date to string
+    let startDate = this.startDate.toString();
+    let endDate = this.endDate.toString();
+      // if valid date
+      if (this.startDate < this.endDate) {
+        this.getExcelData(startDate, endDate);
+      } 
+      // invalid date
+      else {
+        this.dateErrMssg = "please enter valid date range";
+      }
+    // set default date
+    this.startDate = new Date();
+    this.endDate = new Date()
+  }
+
   handelActions(action: any) {
     if (action.type === 'delete') {
       // this.customerService.deleteCustomer(action.id).subscribe(() => {
       //   this.getData(0);
       // });
     } else if (action.type === 'edit') {
-      this.router.navigate(['admin/updateCustomerForm', action.id]);
+      // this.router.navigate(['admin/updateCustomerForm', action.id]);
     } else if (action.type === 'view') {
       this.router.navigate(['admin/customerDetails', action.id]);
     }
@@ -95,5 +121,31 @@ export class CustomerTableComponent {
   onPageSizeChange(e: number) {
     this.page.itemsPerPage = e;
     this.getData(0);
+  }
+
+
+  
+  getExcelData(startDate: string, endDate: string) {
+    this.orderItemService.generateExcelOfOrderedVehicle(
+      startDate, endDate,
+      ).subscribe(response => {
+        // storing the binary object in binary large object
+        const blob = new Blob([response], { type: 'application/xls' });
+        // setting the url of blob
+        const url = window.URL.createObjectURL(blob);
+        // creating a anchor element
+        const anchorElement = document.createElement('a');
+        // adding link to anchor
+        anchorElement.href = url;
+        // setting file name
+        anchorElement.download = 'order-vehicles.xls';
+        // add the anchor element to dom
+        document.body.appendChild(anchorElement);
+        // click on anchor elemnent
+        anchorElement.click();
+        // remove the url and element from the dom
+        window.URL.revokeObjectURL(url);
+        document.body.removeChild(anchorElement);
+      })
   }
 }

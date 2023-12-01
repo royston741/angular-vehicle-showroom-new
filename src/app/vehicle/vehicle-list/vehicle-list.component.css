@@ -1,6 +1,7 @@
 .vehicle_list_container {
     display: grid;
     grid-template-columns: 1.5fr 4fr;
+    grid-column-gap:3vw ;
 }
 
 .price_filter input {
@@ -38,8 +39,8 @@ label {
 .vehicle_list {
     display: flex;
     flex-wrap: wrap;
-    height: 80vh;
-    overflow-y: scroll;
+    height: 85vh;
+    overflow-y: auto;
     margin: 20px 0;
 }
 
@@ -78,4 +79,55 @@ h3 {
     display: flex;
     justify-content: center;
     align-items: center;
+}
+
+.filter_btn{
+    background-color: white;
+    border: none;
+    border-radius: 4px;
+    padding: 8px 0;
+    width: 120px;
+    margin: 10px 0 0 10px;
+    display: flex;
+    align-items: center;
+    justify-content: space-around;
+    display: none;
+}
+
+@media screen and (max-width:950px) {
+    .vehicle_list_container{
+        display: grid;
+        grid-template-columns: 1fr;
+        position: absolute;
+    }
+
+    .filter_btn{
+        display: flex;
+    }
+
+    .all_filters{
+        width: 100%;
+        display: none;
+    }
+
+    .toggle_active{
+        display: grid;
+    }
+
+    .vehicle_list_container{
+        width: 100%;
+    }
+}
+
+@media screen and (max-width:653px) {
+    .vehicle_list{
+        justify-content: center;
+    }
+}
+
+@media screen and (max-width:440px) {
+    .vehicle{
+        width: 250px;
+
+    }
 }

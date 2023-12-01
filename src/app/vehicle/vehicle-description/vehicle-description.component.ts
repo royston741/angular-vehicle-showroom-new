@@ -1,10 +1,11 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, EventEmitter, OnInit, Output } from '@angular/core';
 import { ActivatedRoute, Router } from '@angular/router';
 import { CartService } from 'src/app/services/cart.service';
 import { ShareDataService } from 'src/app/services/shareData.service';
 import { StorageService } from 'src/app/services/storage.service';
 import { VehicleService } from 'src/app/services/vehicle.servce';
 import { Vehicle } from 'src/shared/model/Vehicle';
+import { CustomerComponent } from 'src/app/customer/customer/customer.component';
 
 @Component({
   selector: 'app-vehicle-description',
@@ -20,27 +21,28 @@ export class VehicleDescriptionComponent implements OnInit {
     rating: 0,
     vehicleType: '',
     twoWheelerType: '',
-    imgUrl: ''
+    imgUrl: '',
+    description: ''
   };
 
   quantity: number = 1;
   selectedFuelType: string = "PETROL"
-  selectedColor: string = "RED"
+  selectedColor: string = "WHITE"
 
   charges: { name: string, price: string }[] = [];
   discounts: { name: string, price: string }[] = [];
   rating: number = 0;
 
-  colors = ["RED", "BLACK", "PINK"];
+  colors: string[] = [];
   fuelType = ["PETROL", "CNG"]
 
-  addToCartSuccess=false
+  addToCartSuccess = false
 
   constructor(private activeRoute: ActivatedRoute,
     private vehicleService: VehicleService,
     private cartService: CartService,
     private storageService: StorageService,
-    private router: Router, private shareDataService: ShareDataService) { }
+    private router: Router, private shareDataService: ShareDataService,) { }
 
   get stars() {
     return Array(Math.floor(this.rating)).fill(0);
@@ -64,8 +66,13 @@ export class VehicleDescriptionComponent implements OnInit {
 
     this.vehicleService.getExtraChargeByColor().subscribe(response => {
       this.charges = response.responseData
+      this.colors = response.responseData.map((color: { name: string; }) => color.name)
+      this.colors.reverse()
     })
 
+    this.vehicleService.getDiscountByFuelType().subscribe(response => {
+      this.fuelType = response.responseData.map((fuel: { name: string; }) => fuel.name)
+    })
   }
 
   addToCart() {
@@ -80,10 +87,11 @@ export class VehicleDescriptionComponent implements OnInit {
 
     this.cartService.addToCart(item, id).subscribe({
       next: (response) => {
-        this.addToCartSuccess=response.success;
-        setTimeout(()=>{
-          this.addToCartSuccess=false
-        },1000)
+        this.addToCartSuccess = response.success;
+        this.addToCartSuccess && this.storageService.storeItem("added", "1");
+        setTimeout(() => {
+          this.addToCartSuccess = false
+        }, 1000)
       }, error: () => { }
     })
   }
@@ -107,4 +115,6 @@ export class VehicleDescriptionComponent implements OnInit {
   decrement() {
     this.quantity > 1 && (this.quantity -= 1)
   }
+
+
 }

@@ -15,4 +15,6 @@ export class StorageService {
   public removeItem(name:string){
     localStorage.removeItem(name)
   }
+
+  
 }

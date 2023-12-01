@@ -1,4 +1,4 @@
-import {  Directive, ElementRef, Input, OnInit, Renderer2  } from '@angular/core';
+import { Directive, ElementRef, Input, OnInit, Renderer2 } from '@angular/core';
 import { KeyValue } from '../model/KeyValue';
 
 
@@ -8,13 +8,17 @@ import { KeyValue } from '../model/KeyValue';
 export class InputAttributeDirective implements OnInit {
 
     @Input()
-    attr: KeyValue[] = [];
+    attributeArray: KeyValue[] = [];
 
     constructor(private el: ElementRef, private renderer: Renderer2) { }
 
     ngOnInit() {
-        this.attr.forEach(a => {
-            this.renderer.setAttribute(this.el.nativeElement, a.key, a.value)
+
+        this.attributeArray.forEach(attribute => {
+            if (attribute.key === "placeholder") {
+                attribute.value=attribute.value+ " *"
+            }
+            this.renderer.setAttribute(this.el.nativeElement, attribute.key, attribute.value)
         })
     }
 }

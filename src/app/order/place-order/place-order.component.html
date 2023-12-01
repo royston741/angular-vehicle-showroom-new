@@ -1,5 +1,5 @@
 <div class="align_center_screen">
-    <div class="order_p">
+    <div class="order_p" *ngIf="!processing">
 
         <div *ngIf="!plcaceOrderSuccess">
             <div class="order_item_container">
@@ -11,6 +11,7 @@
                     <p class="gap"><b>Discount : </b>{{item.discount | number: '1.0-0'}}</p>
                     <p class="gap"><b>Additional charges : </b>{{item.additionalCharges | number: '1.0-0'}}</p>
                     <p class="gap"><b>Quantity : </b>{{item.quantity}}</p>
+                    <p class="gap"><b>Final price : </b>{{item.finalPrice | currency:'INR'}}</p>
                 </div>
             </div>
 
@@ -22,12 +23,18 @@
             <button class="cancel_order_btn" (click)="navigateService.navigateCustomerHome()">Cancel</button>
         </div>
         <div *ngIf="plcaceOrderSuccess">
-            <h2>Order plcaced successfully.</h2>
+            <h2>Order placed successfully.</h2>
             <div class="order_btns">
                 <button (click)="navigateService.navigateToCustomerOrder()">Orders</button>
-                <button (click)="navigateService.navigateCustomerHome()">home</button>
+                <button (click)="navigateService.navigateCustomerHome()">Home</button>
             </div>
         </div>
-    </div>
 
+   
+    </div>
+    <div *ngIf="processing" class="loader">
+        <div class="rotate load_big"></div>
+        <h2>Processsing</h2>
+    </div>
+    
 </div>

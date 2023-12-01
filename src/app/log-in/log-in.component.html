@@ -6,7 +6,7 @@
         errMssg="Invalid first name" [validateInput]="validateName"
         (inputEventEmmiter)="formUserName=$event"></app-input>
 
-    <app-input [inputAttribute]="[{key:'type',value:'text'},{key:'placeholder',value:'password'}]"
+    <app-input [inputAttribute]="[{key:'type',value:'password'},{key:'placeholder',value:'password'}]"
         errMssg="Invalid password" [validateInput]="validatePassword"
         (inputEventEmmiter)="formPassword=$event"></app-input>
 

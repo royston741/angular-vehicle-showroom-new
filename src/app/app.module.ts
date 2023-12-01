@@ -48,7 +48,7 @@ import { RegisterAdminComponent } from './admin/register-admin/register-admin.co
      CustomerDetailsComponent,
      VehicleTableComponent,
      OrderItemDetailComponent,
-     RegisterAdminComponent
+     RegisterAdminComponent,
   ],
   imports: [
     BrowserModule,

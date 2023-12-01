@@ -10,6 +10,10 @@ import { Vehicle } from 'src/shared/model/Vehicle';
 })
 export class VehicleListComponent implements OnInit {
 
+  isLoadingVehicles=false;
+
+  toggleActive=false;
+  
   vehicles: Vehicle[] = []
 
   errMssg: string[] = [];
@@ -26,12 +30,17 @@ export class VehicleListComponent implements OnInit {
     endingPrice: 0
   }
 
+  vehicleTypeList: string[] = ["ALL"];
+
+  twoWheelerTypeList: string[] = ["ALL"];
+
   startPrice: number = 0;
   endPrice: number = 0;
 
-  constructor(private vehicleService: VehicleService,private router:Router) { }
+  constructor(private vehicleService: VehicleService, private router: Router) { }
 
-  ngOnInit(): void {
+  ngOnInit() {
+    this.isLoadingVehicles=true
     this.vehicleService.getTheMaxAndMinPrice().subscribe(response => {
       this.startPrice = response.responseData[1]
       this.endPrice = response.responseData[0]
@@ -39,6 +48,16 @@ export class VehicleListComponent implements OnInit {
       this.filter.endingPrice = this.endPrice
       this.getAllVehiclesData();
     })
+
+    this.vehicleService.getVehicleType().subscribe(response => {
+      this.vehicleTypeList =[...this.vehicleTypeList ,...response.responseData];
+    })
+
+    this.vehicleService.getDiscountByTwoWheelerType().subscribe(response => {
+      const listOfTwoWheelerType=response.responseData.map((type: { name: string })=>type.name)
+      this.twoWheelerTypeList =[...this.twoWheelerTypeList ,...listOfTwoWheelerType];
+    })
+
   }
 
   getAllVehiclesData() {
@@ -54,7 +73,7 @@ export class VehicleListComponent implements OnInit {
       this.filter.twoWheelerType).subscribe({
         next: (response) => {
           this.vehicles = response.responseData;
-          console.log(this.vehicles)
+          this.isLoadingVehicles=false
         },
         error: (err) => {
           this.errMssg = err.error.errMssg
@@ -86,23 +105,23 @@ export class VehicleListComponent implements OnInit {
 
   onSelectVehicleType(value: string) {
     this.filter.twoWheelerType = "";
-     if(value ==="All"){
+    if (value === "ALL") {
       this.filter.vehicleType = '';
-    }else{
+    } else {
       this.filter.vehicleType = value;
     }
     this.getAllVehiclesData()
   }
 
   onSelectTwoWheelerType(value: string) {
-    if(value ==="All"){
+    if (value === "ALL") {
       this.filter.twoWheelerType = '';
-    }else{
+    } else {
       this.filter.twoWheelerType = value;
     }
     this.getAllVehiclesData()
   }
- 
+
   onPriceChange(price: { type: string, value: string }) {
     if (price.type === "start") {
       this.filter.startingPrice = parseInt(price.value)
@@ -112,7 +131,7 @@ export class VehicleListComponent implements OnInit {
     }
   }
 
-  onNavigateToVehicleDescription(id:number){
-    this.router.navigate(["customer","vehicleDescription",id])
+  onNavigateToVehicleDescription(id: number) {
+    this.router.navigate(["customer", "vehicleDescription", id])
   }
 }

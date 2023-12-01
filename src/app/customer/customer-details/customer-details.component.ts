@@ -1,7 +1,5 @@
 import { Component, OnInit } from '@angular/core';
 import { ActivatedRoute } from '@angular/router';
-import { OrderService } from '../../services/order.service';
-import { Customer } from '../../../shared/model/Customer';
 import { UserService } from 'src/app/services/user.service';
 import { OrderItemService } from 'src/app/services/orderItem.service';
 
@@ -11,13 +9,20 @@ import { OrderItemService } from 'src/app/services/orderItem.service';
   styleUrls: ['./customer-details.component.css'],
 })
 export class CustomerDetailsComponent implements OnInit {
-  customer!: {
+  customer: {
     id:number,
     firstName:string,
     lastName:String,
     email:String,
     phoneNo:String,
     address:String
+  }={
+    id: 0,
+    firstName: '',
+    lastName: '',
+    email: '',
+    phoneNo: '',
+    address: ''
   } ;
 
   constructor(
@@ -33,9 +38,9 @@ export class CustomerDetailsComponent implements OnInit {
         id:res.responseData.id,
         firstName:res.responseData.firstName,
         lastName:res.responseData.lastName,
-        email:res.responseData.lastName,
-        phoneNo:res.responseData.lastName,
-        address:res.responseData.lastName
+        email:res.responseData.email,
+        phoneNo:res.responseData.phoneNo,
+        address:res.responseData.address
       }
       this.customer = data;
     });

@@ -1,7 +1,7 @@
 import { Vehicle } from "./Vehicle";
 
 export interface Item  {
-    id: number,
+    id:  |null,
     additionalCharges: number,
     color: string,
     discount: number,
@@ -10,5 +10,6 @@ export interface Item  {
     initialPrice: number,
     itemType: string,
     quantity: number,
-    vehicle: Vehicle
+    vehicle: Vehicle,
+    orderItemBuyDate:Date
   }

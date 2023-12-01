@@ -2,33 +2,48 @@
     <nav>
         <div class="heading_menu">
             <h1>MyDrive</h1>
+            <div class="ham_menu_container" (click)="toggleActive=!toggleActive">
+                <button class="hamburger_menu">
+                    <div class="hamburger_menu_bar"></div>
+                    <div class="hamburger_menu_bar"></div>
+                    <div class="hamburger_menu_bar"></div>
+                </button>
+            </div>
+        </div>
+
+        <div class="menu_profile toggle_inactive {{toggleActive&&'toggle_active'}}">
             <ul class="menu">
                 <a (click)="navigateService.navigateCustomerHome()" routerLink="/customer/vehicleList"
                     routerLinkActive="active">
                     <li>Vehicles</li>
                 </a>
                 <a routerLinkActive="active" routerLink="/customer/allOrders">
-                    <li (click)="navigateService.navigateToCustomerOrder()">Orders</li>
+                    <li (click)="navigateService.navigateToCustomerOrder()">Order history</li>
                 </a>
                 <a routerLinkActive="active" routerLink="/customer/cart">
-                    <li (click)="navigateService.navigateToCustomerCart()">Cart</li>
+                    <li (click)="navigateService.navigateToCustomerCart()">Cart
+                        <span class="cart_total_item_digit">
+                            {{cartTotalItems}}
+                        </span>
+                    </li>
                 </a>
+            </ul>
+            <ul class="profile_container">
+                <li class="profile" (click)="navigateService.navigateToCustomerProfile()">
+                    <p>
+                        {{name}}
+                    </p>
+                    <span class="material-symbols-outlined">
+                        person
+                    </span>
+                </li>
+                <li>
+                    <button class="log_out_btn" (click)="logOut()">Log out</button>
+                </li>
             </ul>
         </div>
 
-        <ul class="profile_container">
-            <li class="profile" (click)="navigateService.navigateToCustomerProfile()">
-                <p>
-                    {{name}}
-                </p>
-                <span class="material-symbols-outlined">
-                    person
-                </span>
-            </li>
-            <li>
-                <button class="log_out_btn" (click)="logOut()">Log out</button>
-            </li>
-        </ul>
+       
     </nav>
 </header>
 <router-outlet></router-outlet>

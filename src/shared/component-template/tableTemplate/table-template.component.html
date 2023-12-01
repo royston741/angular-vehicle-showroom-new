@@ -44,6 +44,7 @@
             [id]="data.id"
             [name]="data.name"
             (btnClickEvent)="onAction($event)"
+            [viewText]="viewFor"
           ></app-actions>
         </tr>
       </tbody>
@@ -92,7 +93,7 @@
       Next
     </button>
   </div>
-  <div class="model" *ngIf="confirmDelete">
+  <!-- <div class="model" *ngIf="confirmDelete">
     <div class="confirm-box">
       <p>Confirm delete {{ deleteCustomerDetails.name }}</p>
       <div>
@@ -100,7 +101,7 @@
         <button class="confirm_cancel" (click)="onCancel()">Cancel</button>
       </div>
     </div>
-  </div>
+  </div> -->
 </div>
 <ng-template #empyty>
   <p style="text-align: center">No details</p>

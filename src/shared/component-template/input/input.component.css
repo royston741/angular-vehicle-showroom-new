@@ -27,3 +27,13 @@ input::-webkit-inner-spin-button {
   -webkit-appearance: none;
   margin: 0;
 }
+
+.input_label{
+    margin: 5px 0 10px;
+}
+
+@media screen and (max-width:330px){
+   .err{
+    font-size: 0.5rem;
+   }
+}

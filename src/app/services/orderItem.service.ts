@@ -13,13 +13,18 @@ export class OrderItemService {
     constructor(private http: HttpClient) { }
 
     getAllOrderedItemOfCustomerByCustomerId(id: number, pageNo: number, pageSize: number, sortBy: string, sortDirection: string) {
-        console.log(
-            `${this.baseUrl}getAllOrderedItemOfCustomerByCustomerId?id=${id}&pageNo=${pageNo}&&pageSize=${pageSize}&&sortBy=${sortBy}&&sortDirection=${sortDirection}`)
         return this.http.get<Response>(`${this.baseUrl}getAllOrderedItemOfCustomerByCustomerId?id=${id}&pageNo=${pageNo}&&pageSize=${pageSize}&&sortBy=${sortBy}&&sortDirection=${sortDirection}`);
     }
 
     getOrderItemById(id: number): Observable<Response> {
         return this.http.get<Response>(`${this.baseUrl}getOrderItemById/${id}`);
     }
+
+    generateExcelOfOrderedVehicle(start:string,end:string){
+        return this.http.get(
+            `${this.baseUrl}getExelOfOrderedVehicle?startDate=${start}&&endDate=${end}`,  
+          {responseType:'blob'}
+        );
+      }
 
 }

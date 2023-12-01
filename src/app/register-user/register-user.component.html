@@ -3,7 +3,7 @@
     <form (submit)="onSubmitForm($event)" class="form">
         <h1>Register {{formFor.toLowerCase()}}</h1>
 
-        <app-input [inputAttribute]="[{key:'type',value:'text'},{key:'placeholder',value:'Fitst name'}]"
+        <app-input [inputAttribute]="[{key:'type',value:'text'},{key:'placeholder',value:'First name'}]"
             [inputValue]="formFirstName.value" errMssg="Minimum 3 letters required in first name" [validateInput]="validateName"
             (inputEventEmmiter)="formFirstName=$event"></app-input>
 
@@ -28,7 +28,7 @@
             (inputEventEmmiter)="formPassword=$event"></app-input>
 
         <div  *ngIf="formFor==='CUSTOMER'" class="address_container">
-            <textarea [ngClass]="(!(formAddress.valid )==true)?'err':''" #address placeholder="Address" (keyup)="validateAddress(address.value)" (blur)="validateAddress(address.value)"
+            <textarea [ngClass]="(!(formAddress.valid )==true)?'err':''" #address placeholder="Address *" (keyup)="validateAddress(address.value)" (blur)="validateAddress(address.value)"
                 name="address" [(ngModel)]="formAddress.value"></textarea>
             <span class="err_mssg" *ngIf="!(formAddress.valid )">please enter valid address</span>
         </div>

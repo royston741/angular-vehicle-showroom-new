@@ -23,7 +23,7 @@
             [validateInput]="validatePhoneNo" (inputEventEmmiter)="formPhoneNo=$event"></app-input>
 
         <app-input
-            [inputAttribute]="[{key:'type',value:'text'},{key:'placeholder',value:'password'},{key:'value',value:formPassword.value}]"
+            [inputAttribute]="[{key:'type',value:'password'},{key:'placeholder',value:'password'},{key:'value',value:formPassword.value}]"
             errMssg="Invalid password" [validateInput]="validatePassword" [inputValue]="formPassword.value"
             [isDisabled]="disabled" (inputEventEmmiter)="formPassword=$event"></app-input>
 
@@ -43,7 +43,7 @@
         <button *ngIf="disabled" (click)="disabled=false" class="btn btn_color">Edit</button>
         <button class="btn_color"  (click)="onSubmitForm($event)" *ngIf="!disabled"
             [disabled]="!(formFirstName.valid&&formLastName.valid&&formEmail.valid&&formPhoneNo.valid&&formPassword.valid&& formAddress.value.length>8)">submit</button>
-        <button class="transparent_btn" *ngIf="!disabled" (click)="disabled=true">Cancel</button>
+        <button class="transparent_btn" *ngIf="!disabled" (click)="onCancelForm()">Cancel</button>
 
     </form>
 </div>

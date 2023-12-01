@@ -78,3 +78,13 @@ button{
 button:disabled{
     background-color:var(--disabled);
 }
+
+form h1{
+    margin-bottom: 20px;
+}
+
+@media screen and (max-width:350px){
+    form{
+        width: 90%;
+    }
+}

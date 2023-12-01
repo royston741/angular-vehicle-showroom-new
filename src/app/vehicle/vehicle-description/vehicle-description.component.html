@@ -1,9 +1,9 @@
-<div class="vehicle_desc_container">
+<div class="vehicle_desc_container top">
 
     <div class="vehicle">
         <div class="img_container">
-        <img src={{vehicle.imgUrl}} alt="">
-    </div>
+            <img src={{vehicle.imgUrl}} alt="">
+        </div>
 
         <div class="vehcile_d">
             <div class="vehicle_desc">
@@ -37,6 +37,7 @@
                 <!-- <p>{{vehicle.vehicleType}}</p> -->
             </div>
             <div class="quantity gap">
+                <b>Quantity : </b>
                 <button (click)="decrement()">-</button>
                 <p>{{quantity}}</p>
                 <button (click)="increment()">+</button>
@@ -75,8 +76,8 @@
                         Discount
                     </h4>
                     <span *ngFor="let discount of discounts,index as i">
-                        {{discount.name.toLowerCase()}} : {{discount.price | number: '1.0-0'}}%
-                        {{!(i===discounts.length-1)&& "|"}}
+                        {{discount.name.toLowerCase()}} : {{discount.price | number: '1.0-0'}}%,
+                        <!-- {{!(i===discounts.length-1)&& "|"}} -->
                     </span>
                 </div>
                 <div>
@@ -84,14 +85,26 @@
                         Additional Charges
                     </h4>
                     <span *ngFor="let charge of charges; index as i">
-                        {{charge.name.toLowerCase()}} : {{charge.price | number: '1.0-0'}}% {{!(i===charges.length-1)&&
-                        "|"}}
+                        <span *ngIf="charge.name!='WHITE'">
+                            {{charge.name.toLowerCase()}} : {{charge.price | number: '1.0-0'}}% ,
+                        </span>
+
+                        <!-- {{!(i===charges.length-1)&&
+                        "|"}} -->
                     </span>
                 </div>
             </div>
         </div>
 
+        <div class="description">
+            <!-- >&#8520; -->
+            <h2>Description :</h2>
+            <p class="description_text">{{vehicle.description}}</p>
+        </div>
     </div>
 
-    <div *ngIf="addToCartSuccess" class="add_cart_success">Item added to cart.</div>
+    <div *ngIf="addToCartSuccess" class=" notification">
+        <div  class="add_cart_success">Item added to cart.</div>
+    </div>
+
 </div>

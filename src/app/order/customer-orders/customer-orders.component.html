@@ -7,10 +7,11 @@
             <div class="order_desc">
                 <h2>{{item.vehicle.name}}</h2>
                 <p>{{item.vehicle.vehicleType}}</p>
+                <p><b>Order Date :</b>{{item.orderItemBuyDate}}</p>
                 <p><b>Quantity :</b> {{item.quantity}}</p>
                 <p><b>Color :</b> {{item.color}}</p>
                 <p><b>Fuel Type :</b> {{item.fuelType}}</p>
-                <p><b>Price : </b>{{item.finalPrice}}</p>
+                <p><b>Price : </b>{{item.finalPrice | currency:'INR'}}</p>
             </div>
         </div>
         <h2 *ngIf="items.length<=0">Your orders is empty.</h2>

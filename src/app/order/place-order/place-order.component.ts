@@ -13,43 +13,61 @@ import { Order } from 'src/shared/model/Order';
   styleUrls: ['./place-order.component.css']
 })
 export class PlaceOrderComponent implements OnInit {
-  order: any
+  order: Order={
+    total: 0,
+    orderItem: []
+  }
   customerId!: number
-  isCartItems = false;
+  isOrderfromCartItems = false;
+  processing = false;
 
   plcaceOrderSuccess = false;
 
   constructor(private shareDataServices: ShareDataService, private orderService: OrderService,
     private storageService: StorageService, private cartService: CartService,
-     public navigateService:NavigateService) { }
+    public navigateService: NavigateService) { }
 
   ngOnInit() {
     this.customerId = JSON.parse(this.storageService.getItem("user")).id;
-    const data = (this.shareDataServices.getData().item) as Item[];
-    this.isCartItems = this.shareDataServices.getData().isCartItems;
+    let data = this.shareDataServices.getData();
+    console.log(data)
+    if (data === undefined) {
+      this.navigateService.navigateCustomerHome()
+    }
+    const items = (data.item) as Item[];
 
-    this.orderService.processOrder({ total: 0, orderItem: data }).subscribe(response => {
+    this.isOrderfromCartItems = this.shareDataServices.getData().isCartItems;
+
+    this.orderService.processOrder({
+      total: 0, orderItem: items
+    }).subscribe(response => {
       this.order = response.responseData;
     })
   }
 
   plcaeOrder() {
-    this.order.orderItem = this.order.orderItem.map((o: { color: any; fuelType: any; initialPrice: any; itemType: any; quantity: any; vehicle: any; }) => {
-      const obj = {
-        color: o.color,
-        fuelType: o.fuelType,
-        initialPrice: o.initialPrice,
-        itemType: o.itemType,
-        quantity: o.quantity,
-        vehicle: o.vehicle
-      }
-      return obj;
+    this.processing = true;
+    // this.order.orderItem = this.order.orderItem.map((o: { color: any; fuelType: any; initialPrice: any; itemType: any; quantity: any; vehicle: any; }) => {
+      this.order.orderItem = this.order.orderItem.map((o: Item) => {
+ 
+    // const obj = {
+
+    //     color: o.color,
+    //     fuelType: o.fuelType,
+    //     initialPrice: o.initialPrice,
+    //     itemType: o.itemType,
+    //     quantity: o.quantity,
+    //     vehicle: o.vehicle
+    //   }
+    o.id=null;
+      return o;
     })
 
     this.orderService.plcaeOrder(this.order, this.customerId).subscribe(response => {
+      this.processing = false;
       this.order = response.responseData;
       this.plcaceOrderSuccess = response.success;
-      if (response.success = true && this.isCartItems) {
+      if (response.success = true && this.isOrderfromCartItems) {
         const id = JSON.parse(this.storageService.getItem("user")).id;
         this.cartService.clearCart(id).subscribe()
       }

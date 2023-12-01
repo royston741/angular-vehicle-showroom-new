@@ -21,6 +21,9 @@ export class TableComponent {
   @Input() filterInputPlaceHolder = '';
   @Input() tabelName = '';
 
+  @Input()
+  viewFor="";
+
   filterInput = '';
 
   confirmDelete = false;
@@ -40,10 +43,10 @@ export class TableComponent {
   }
 
   numberArray(num: number): number[] {
-    return Array(num + 1)
-      .fill(0)
-      .map((el, i) => i)
-      .filter((el) => el >= 5 && el % 5 === 0);
+    return Array(num + 1)  // create a array of length
+      .fill(0) // fille elements as 0
+      .map((el, i) => i) // provide an array consisting of index
+      .filter((el) => el >= 5 && el % 5 === 0); // return array including element > 5 and multiple of 5
   }
 
   onPageChange(page: string | number) {
@@ -67,13 +70,13 @@ export class TableComponent {
 
   onAction(action: { type: string; id: number; name: string }) {
     if (action.type === 'delete') {
-      this.deleteCustomerDetails = {
-        name: action.name,
-        id: action.id,
-      };
-      this.confirmDelete = true;
+      // this.deleteCustomerDetails = {
+      //   name: action.name,
+      //   id: action.id,
+      // };
+      // this.confirmDelete = true;
     } else if (action.type === 'edit') {
-      this.actionEvent.emit(action);
+      // this.actionEvent.emit(action);
     } else if (action.type === 'view') {
       this.actionEvent.emit(action);
     }

@@ -22,7 +22,8 @@ export class CustomerOrdersComponent implements OnInit {
 
   getData(pageNo: number) {
     this.orderItemService.getAllOrderedItemOfCustomerByCustomerId(this.customerId,pageNo,3,"id","DESC").subscribe(response => {
-      this.items = response.responseData.content;
+      this.items = response.responseData.content
+      console.log(this.items)
       this.page.itemsPerPage = response.responseData.pageable.pageSize;
       this.page.currentPage = response.responseData.pageable.pageNumber;
       this.page.totalItems = response.responseData.totalElements;

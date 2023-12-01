@@ -18,24 +18,28 @@ export class ProfileComponent {
   formPassword = { value: '', valid: true }
   formAddress = { value: '', valid: true }
 
-  disabled=true;
+  disabled = true;
 
   responseSuccess = false;
   responseErrorMessage = [];
 
   constructor(private userService: UserService, private router: Router,
-    private storageService: StorageService,private navigateService:NavigateService) { }
+    private storageService: StorageService, private navigateService: NavigateService) { }
 
   ngOnInit() {
     this.customerId = JSON.parse(this.storageService.getItem("user")).id;
-    this.userService.getCustomerById(this.customerId).subscribe(response=>{
-        const data =response.responseData;
-        this.formFirstName.value=data.firstName;
-        this.formLastName.value=data.lastName;
-        this.formEmail.value=data.email
-        this.formPhoneNo.value=data.phoneNo
-        this.formPassword.value=data.password
-        this.formAddress.value=data.address
+    this.getCustomerDataById(this.customerId)
+  }
+
+  getCustomerDataById(id: number) {
+    this.userService.getCustomerById(id).subscribe(response => {
+      const data = response.responseData;
+      this.formFirstName.value = data.firstName;
+      this.formLastName.value = data.lastName;
+      this.formEmail.value = data.email
+      this.formPhoneNo.value = data.phoneNo
+      this.formPassword.value = data.password
+      this.formAddress.value = data.address
     })
   }
 
@@ -48,27 +52,32 @@ export class ProfileComponent {
     this.responseErrorMessage = [];
     e.preventDefault();
     this.userService.updateCustomer({
-      id:this.customerId,
+      id: this.customerId,
       firstName: this.formFirstName.value.trim(),
       lastName: this.formLastName.value.trim(),
       email: this.formEmail.value.trim(),
       phoneNo: this.formPhoneNo.value.trim(),
       password: this.formPassword.value.trim(),
       address: this.formAddress.value.trim(),
-      userType:"CUSTOMER"
+      userType: "CUSTOMER"
     }).subscribe({
       next: (response) => {
         this.responseSuccess = response.success
         if (this.responseSuccess) {
-          setTimeout(()=>{
-            this.responseSuccess=false;
-            this.disabled=true;
-          },1000)
+          setTimeout(() => {
+            this.responseSuccess = false;
+            this.disabled = true;
+          }, 1000)
         }
       }, error: (err) => {
         this.responseErrorMessage = err.error.errMssg
       }
     })
+  }
+
+  onCancelForm() {
+    this.disabled=true;
+    this.getCustomerDataById(this.customerId)
   }
 
   validateName(value: string) {
