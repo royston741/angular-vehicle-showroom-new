@@ -22,7 +22,7 @@ export class CartComponent implements OnInit {
 
   constructor(private storageService: StorageService, private cartService: CartService,private router:Router,private shareDataService:ShareDataService) { }
 
-  ngOnInit(): void {
+  ngOnInit() {
     this.getCartData();
   }
 

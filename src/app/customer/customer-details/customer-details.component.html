@@ -1,6 +1,8 @@
 <div class="customer_details_container">
+  <app-back-button customClass="align_back_btn_admin"></app-back-button>
+
   <div class="get_result">
-    <p  *ngFor="let detail of customer | keyvalue : sortNull">
+    <p *ngFor="let detail of customer | keyvalue : sortNull">
       <span *ngIf="detail.key!='id'">
         <b> {{transform(detail.key)}} :</b> {{detail.value }}
       </span>
@@ -8,7 +10,5 @@
 
   </div>
   <h1>Ordered vehicle details</h1>
-  <app-vehicle-table
-  [customerId]="customer.id"
-  ></app-vehicle-table>
+  <app-vehicle-table [customerId]="customer.id"></app-vehicle-table>
 </div>

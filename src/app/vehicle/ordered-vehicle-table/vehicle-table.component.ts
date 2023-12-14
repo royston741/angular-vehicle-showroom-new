@@ -15,6 +15,7 @@ export class VehicleTableComponent implements OnChanges {
 
   @Input()
   customerId: number = 0;
+
   vehicles: Item[] = [];
 
   sort = {
@@ -25,17 +26,20 @@ export class VehicleTableComponent implements OnChanges {
   filterValue = '';
   errMssg: string[] = [];
 
-  page = { itemsPerPage: 5, currentPage: 0, totalItems: 0, totalPages: 0 };
+  page = {
+     itemsPerPage: 5, 
+     currentPage: 0, 
+     totalItems: 0, 
+     totalPages: 0 , 
+     first: false,
+    last: false
+  };
 
-  constructor(private storageService: StorageService, private orderItemService: OrderItemService, private router: Router, private orderService: OrderService) { }
+  constructor(private orderItemService: OrderItemService, private router: Router) { }
 
   ngOnChanges() {
     this.getData(0);
   }
-
-  // ngOnInit(): void {
-  //   this.getData(0);
-  // }
 
   getData(pageNo: number) {
     this.orderItemService
@@ -61,6 +65,8 @@ export class VehicleTableComponent implements OnChanges {
             this.page.currentPage = response.responseData.pageable.pageNumber;
             this.page.totalItems = response.responseData.totalElements;
             this.page.totalPages = response.responseData.totalPages;
+            this.page.first = response.responseData.first;
+            this.page.last = response.responseData.last;
             this.errMssg = [];
           },
           error: (err) => {
@@ -89,17 +95,7 @@ export class VehicleTableComponent implements OnChanges {
   handelActions(action: any) {
     console.log(action);
     if (action.type === 'delete') {
-
-      // this.vehicleService.getOrderIdOfVehicle(action.id).subscribe(response => {
-      //   const orderId = response.responseData;
-      //   console.log("orderId"+orderId)
-      //   this.vehicleService.getVehicleById(action.id).subscribe(response => {
-      //     const vehicle = response.responseData;
-      //     this.orderService.updateCustomerOrder(orderId,vehicle).subscribe()
-      //   });
-      // })
     } else if (action.type === 'edit') {
-      // this.router.navigate(['updateCustomerForm', action.id]);
     } else if (action.type === 'view') {
       this.router.navigate(['admin/orderItemDetail', action.id]);
     }

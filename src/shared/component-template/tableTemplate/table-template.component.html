@@ -1,5 +1,5 @@
-<div *ngIf="dataList.length > 0; else empyty" class="table_container">
-  <div class="filter_container" *ngIf="tabelName!='vehicle'">
+<div  class="table_container">
+  <div class="filter_container" *ngIf="!tabelName.includes('vehicle')">
     <input
       type="text"
       [(ngModel)]="filterInput"
@@ -7,8 +7,8 @@
     />
     <button (click)="onFilterBtnClick()">Filter</button>
   </div>
-  <div>
-    <table>
+  <div style="height: 50vh;" >
+    <table *ngIf="dataList.length>0">
       <thead>
         <tr>
           <th *ngFor="let header of dataList[0] | keyvalue : sortNull">
@@ -45,12 +45,13 @@
             [name]="data.name"
             (btnClickEvent)="onAction($event)"
             [viewText]="viewFor"
+            [enableEdit]="enableEditBtn"
           ></app-actions>
         </tr>
       </tbody>
     </table>
   </div>
-  <div class="page_size_container">
+  <!-- <div class="page_size_container">
     <label for="pageSizeOptions">Page size :</label>
     <select
       name="pageSize"
@@ -92,7 +93,7 @@
     >
       Next
     </button>
-  </div>
+  </div> -->
   <!-- <div class="model" *ngIf="confirmDelete">
     <div class="confirm-box">
       <p>Confirm delete {{ deleteCustomerDetails.name }}</p>
@@ -103,6 +104,6 @@
     </div>
   </div> -->
 </div>
-<ng-template #empyty>
+<!-- <ng-template #empyty>
   <p style="text-align: center">No details</p>
-</ng-template>
+</ng-template> -->

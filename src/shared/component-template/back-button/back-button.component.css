@@ -1,0 +1,18 @@
+.back_btn{
+    background-color: var(--we-page-color);
+    padding: 10px;
+    border: none;
+    border-radius: 4px;
+    color: white;
+    position: absolute;
+    top: 20px;
+    left: 20px;
+}
+
+.align_back_btn{
+    top: 90px;
+ }
+
+ .align_back_btn_admin{
+    left: 390px;
+ }

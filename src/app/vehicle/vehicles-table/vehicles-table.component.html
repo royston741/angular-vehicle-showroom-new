@@ -1,0 +1,33 @@
+<div class="align_center_screen flex_direction_column">
+  <h1>All Vehicles</h1>
+  <div class="filter_container">
+    <app-select selectFor="Vehicle type :" [options]="vehicleTypeList"
+      (selectEventEmitter)="onSelectVehicleType($event)"></app-select>
+
+    <app-select *ngIf="filter.vehicleType==='BIKE'" selectFor="Two wheeler type :" [options]="twoWheelerTypeList"
+      (selectEventEmitter)="onSelectTwoWheelerType($event)"></app-select>
+  </div>
+
+  <div class="vehicles_table">
+    <h3 *ngIf="isLoading" style="margin-top: 40px;">Loading...</h3>
+    <app-table 
+      [pageConfig]="page" 
+      [dataList]="vehicles" 
+      tabelName="vehicles" 
+      (pageChangeEvent)="getData($event)" 
+      (actionEvent)="handelActions($event)" 
+      (sortEvent)="handelSorting($event)"
+      (pageSizeChangeEvent)="onPageSizeChange($event)" 
+      viewFor="details" 
+      [enableEditBtn]="true"
+      ></app-table>
+  </div>
+
+  <app-pagination-controls 
+     [includePageSize]="true" 
+     [page]="page" 
+     (pageSizeChangeEvent)="onPageSizeChange($event)"
+     (pageChangeEvent)="getData($event)">
+    </app-pagination-controls>
+
+</div>

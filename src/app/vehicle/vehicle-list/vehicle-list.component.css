@@ -21,9 +21,7 @@ label {
 }
 
 .all_filters {
-    /* margin: 10px; */
     padding: 30px 15px;
-    /* box-shadow: rgba(0, 0, 0, 0.24) 0px 3px 8px; */
 }
 
 .search_btn {
@@ -39,9 +37,9 @@ label {
 .vehicle_list {
     display: flex;
     flex-wrap: wrap;
-    height: 85vh;
+    /* height: 81vh; */
     overflow-y: auto;
-    margin: 20px 0;
+    /* margin: 20px 0; */
 }
 
 .vehicle {
@@ -94,6 +92,35 @@ h3 {
     display: none;
 }
 
+.search_btn:disabled{
+    background-color: var(--disabled);
+}
+
+.err{
+    font-size: 0.8rem;
+    color: red;
+    margin: 10px 3px 0px
+}
+
+.pagination_btns button {
+    padding: 10px;
+    margin: 10px;
+    cursor: pointer;
+    border: none;
+    border-radius: 4px;
+    box-shadow: 1px 1px 10px 1px #8888887c;
+  }
+  
+  .page_btn_active {
+    background-color: #3676ee;
+    color: white;
+    font-weight: 400;
+  }
+
+  .list_size{
+    height: 800px;
+  }
+
 @media screen and (max-width:950px) {
     .vehicle_list_container{
         display: grid;
@@ -119,7 +146,8 @@ h3 {
     }
 }
 
-@media screen and (max-width:653px) {
+
+@media screen and (max-width:880px) {
     .vehicle_list{
         justify-content: center;
     }

@@ -26,8 +26,8 @@ export class OrderItemDetailComponent implements OnInit{
       rating: 0,
       vehicleType: '',
       twoWheelerType: '',
-      imgUrl: '',
-      description: ''
+      description: '',
+      vehicleImg: ''
     },
     orderItemBuyDate: new Date()
   };
@@ -44,7 +44,6 @@ export class OrderItemDetailComponent implements OnInit{
   getData(id: number) {
     this.orderItemService.getOrderItemById(id).subscribe((res) => {
       this.orderItem = res.responseData;
-      // console.log(res);
     });
   }
 }

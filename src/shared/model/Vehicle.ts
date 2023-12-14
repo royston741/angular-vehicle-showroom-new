@@ -5,6 +5,6 @@ export interface Vehicle {
     rating: number,
     vehicleType: string,
     twoWheelerType: string,
-    imgUrl: string,
     description:string
+    vehicleImg:string
 }

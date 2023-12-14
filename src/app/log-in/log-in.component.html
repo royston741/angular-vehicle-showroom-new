@@ -2,19 +2,29 @@
     <form (submit)="onSubmitForm($event)">
     <h1>Log in </h1>
 
-    <app-input [inputAttribute]="[{key:'type',value:'text'},{key:'placeholder',value:'User name'}]"
-        errMssg="Invalid first name" [validateInput]="validateName"
-        (inputEventEmmiter)="formUserName=$event"></app-input>
+    <app-input 
+        [inputAttribute]="[{key:'type',value:'text'},{key:'placeholder',value:'User name'}]"
+        errMssg="Invalid first name" 
+        [validateInput]="validateName"
+        (inputEventEmmiter)="formUserName=$event">
+    </app-input>
 
-    <app-input [inputAttribute]="[{key:'type',value:'password'},{key:'placeholder',value:'password'}]"
-        errMssg="Invalid password" [validateInput]="validatePassword"
-        (inputEventEmmiter)="formPassword=$event"></app-input>
+    <app-input 
+    [   inputAttribute]="[{key:'type',value:'password'},{key:'placeholder',value:'password'}]"
+        errMssg="Invalid password"
+        [validateInput]="validatePassword"
+        (inputEventEmmiter)="formPassword=$event">
+    </app-input>
 
     <div class="errMssg" *ngIf="responseErrorMessage.length>0">
         <p *ngFor="let mssg of responseErrorMessage">{{mssg}}</p>
     </div>
 
-    <button [ngClass]="!(formUserName.valid&&formPassword.valid)?'':'disable_btn'" [disabled]="!(formUserName.valid&&formPassword.valid)">submit</button>
+    <button 
+        [ngClass]="!(formUserName.valid&&formPassword.valid)?'':'disable_btn'" 
+        [disabled]="!(formUserName.valid&&formPassword.valid)">
+        submit
+    </button>
 
     <p class="redirect">Don't have a account?
         <a (click)="onNavigate()">Register.</a>

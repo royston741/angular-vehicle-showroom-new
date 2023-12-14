@@ -1,9 +1,9 @@
 <div class=" cart_container">
-    <div><button (click)="clearCart()" class="cart_btn">Clear cart</button></div>
+    <div><button  *ngIf="cart.cartItems.length>0" (click)="clearCart()" class="cart_btn">Clear cart</button></div>
     <div class="cart">
         <div class="cart_item" *ngFor="let item of cart.cartItems ">
             <div class="img_container">
-                <img src={{item.vehicle.imgUrl}} alt="" style="max-width: 100px;max-width: 100px;">
+                <img src={{item.vehicle.vehicleImg}} alt={{item.vehicle.name}} style="max-width: 100px;max-width: 100px;">
             </div>
             <div class="cart_item_desc">
                 <p> <b>{{item.vehicle.name}}</b></p>
@@ -21,7 +21,7 @@
         <h2 *ngIf="cart.cartItems.length<=0">Your cart is empty.</h2>
     </div>
 
-    <div class="cart_total_cotainer">
+    <div class="cart_total_cotainer" *ngIf="cart.cartItems.length>0">
         <p class="cart_total">
             <b> Cart total: </b>
             <span> {{cart.cartTotal | currency:'INR'}}</span>

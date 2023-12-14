@@ -17,7 +17,7 @@ export class OrderItemService {
     }
 
     getOrderItemById(id: number): Observable<Response> {
-        return this.http.get<Response>(`${this.baseUrl}getOrderItemById/${id}`);
+        return this.http.get<Response>(`${this.baseUrl}getOrderItemById?id=${id}`);
     }
 
     generateExcelOfOrderedVehicle(start:string,end:string){

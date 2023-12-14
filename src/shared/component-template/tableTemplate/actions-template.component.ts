@@ -6,7 +6,7 @@ import { Component, EventEmitter, Input, OnInit, Output } from '@angular/core';
     <!-- <button *ngIf="tableName!='vehicle'" class="table_btn delete_btn" (click)="onDeleteBtnClick()">
       delete
     </button> -->
-    <!-- <button *ngIf="tableName!='vehicle'" class="table_btn edit_btn" (click)="onEditBtnClick()">Edit</button> -->
+    <button *ngIf="enableEdit" class="table_btn edit_btn" (click)="onEditBtnClick()">Edit</button>
     <button class="table_btn view_btn" (click)="onViewBtnClick()">View {{viewText}}</button>
   </td>`,
   styleUrls: ['./table-template.component.css'],
@@ -17,6 +17,7 @@ export class ActionsComponent {
   @Input() tableName=""
   @Input() id = 0;
   @Input() name = '';
+  @Input() enableEdit=false;
   @Output() btnClickEvent = new EventEmitter<{
     type: string;
     id: number;

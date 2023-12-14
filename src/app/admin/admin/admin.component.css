@@ -1,20 +1,27 @@
   /* @import url('https://fonts.googleapis.com/css2?family=Cairo+Play:wght@400;500;600;700;800&display=swap'); */
 
+  .main{
+    display: flex;
+  }
+
   nav,
   nav ul {
-      display: flex;
+      /* display: flex; */
   }
 
   nav {
-      padding: 5px 20px;
+      padding: 5px 0px;
       background-color: var(--we-page-color);
-      display: grid;
-      grid-template-columns: 3fr 1fr;
+      /* display: grid;
+      grid-template-columns: 3fr 1fr; */
       justify-content: space-between;
+      height: 100vh;
+      width: 340px;
+      text-align: center;
   }
 
   .heading_menu {
-      display: flex;
+      /* display: flex; */
   }
 
   nav h1 {
@@ -26,28 +33,31 @@
 
   .menu {
       display: flex;
-      justify-content: space-between;
-      align-items: center;
+      flex-direction: column;
+      /* justify-content: space-between; */
+      /* align-items: center; */
       color: white;
       font-weight: 500;
       font-size: 1rem;
-      margin-left: 100px;
+      margin: 20px 0;
+      /* margin-left: 100px; */
   }
 
   .menu li {
-      margin: 0 18px;
+      margin: 20px 8px;
       color: white;
-      padding: 18px 10px;
+      /* padding: 18px 10px; */
   }
 
   .active {
-      border-bottom: 3px solid white;
+    background-color: rgb(14, 14, 240);
+      /* border-bottom: 3px solid white; */
   }
 
   .profile_container {
-      display: flex;
+      /* display: flex;
       justify-content: center;
-      align-items: center;
+      align-items: center; */
   }
 
   .profile_container li {
@@ -60,15 +70,15 @@
       border: 2px solid white;
       padding: 8px 20px;
       border-radius: 4px;
-      display: flex;
+      /* display: flex;
       align-items: center;
-      justify-content: space-between;
+      justify-content: space-between; */
       font-size: 1.2rem;
   }
 
   .profile span {
       font-size: 1.2rem;
-      margin-left: 10px;
+      /* margin-left: 10px; */
   }
 
   .log_out_btn{
@@ -77,4 +87,11 @@
     font-weight: 700;
     border-radius: 4px;
     color: var(--we-page-color);
+  }
+
+  .center{
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    width: 100%;
   }

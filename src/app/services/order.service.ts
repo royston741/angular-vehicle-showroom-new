@@ -18,6 +18,6 @@ export class OrderService {
     }
 
     plcaeOrder(order: Order,customerId: number): Observable<Response> {
-        return this.http.post<Response>(`${this.baseUrl}placeOrder/${customerId}`,order);
+        return this.http.post<Response>(`${this.baseUrl}placeOrder?customerId=${customerId}`,order);
     }
 }

@@ -1,0 +1,25 @@
+<div class="center_pagination_controls">
+  <div class="page_size_container" *ngIf="includePageSize">
+    <label for="pageSizeOptions">Page size :</label>
+    <select name="pageSize" id="pageSizeOptions" (change)="selectPageSize($event)">
+      <option *ngFor="let num of numberArray(page.totalItems)" value="{{ num }}">
+        {{ num }}
+      </option>
+    </select>
+  </div>
+
+  <div class="pagination_btns">
+    <button (click)="onPageChange('previous')" [disabled]="page.first">prev</button>
+    <button [class.page_btn_active]="page.currentPage == 0" (click)="onPageChange(1)">1</button>
+    <button [class.page_btn_active]="page.currentPage == 1" (click)="onPageChange(2)"
+      *ngIf="!(page.totalPages<2)">2</button>
+    <span *ngIf="page.currentPage>1 && (page.currentPage+1)!=page.totalPages" class="between">
+      <span *ngIf="this.page.currentPage>2">...</span>
+      <button [class.page_btn_active]="page.currentPage>1">{{page.currentPage+1}}</button>
+    </span>
+    <span *ngIf="page.totalPages>3 && !(page.currentPage+1==page.totalPages-1)"> ... </span>
+    <button *ngIf="page.totalPages>2" [class.page_btn_active]="page.currentPage+1==page.totalPages"
+      (click)="onPageChange(page.totalPages)">{{page.totalPages}}</button>
+    <button (click)="onPageChange('foward')" [disabled]="page.last">Next</button>
+  </div>
+</div>

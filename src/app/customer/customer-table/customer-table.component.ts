@@ -12,11 +12,15 @@ import { Response } from 'src/shared/model/Response';
 })
 export class CustomerTableComponent {
   customers: Customer[] = [];
+  errMssg :string[]= [];
+
   page = {
     itemsPerPage: 5,
     currentPage: 0,
     totalItems: 0,
     totalPages: 0,
+    first: false,
+    last: false,
   };
 
   sort = {
@@ -25,7 +29,7 @@ export class CustomerTableComponent {
   };
 
   filterValue = '';
-  errMssg = [];
+  
 
   startDate=new Date();
   endDate=new Date();
@@ -43,6 +47,7 @@ export class CustomerTableComponent {
   }
 
   getData(pageNo: number) {
+    this.customers=[]
     this.customerService
       .getAllCustomers(
         pageNo,
@@ -67,33 +72,18 @@ export class CustomerTableComponent {
             this.page.currentPage = response.responseData.pageable.pageNumber;
             this.page.totalItems = response.responseData.totalElements;
             this.page.totalPages = response.responseData.totalPages;
+            this.page.first = response.responseData.first;
+            this.page.last = response.responseData.last;
             this.errMssg = [];
+            
           },
           error: (err:any) => {
-            this.errMssg = err.error.errMessage;
+            this.errMssg =err.error.errMssg
           }
         });
   }
 
-  
-  onFetch() {
-    // set err message empty
-    this.dateErrMssg = "";
-    // convert date to string
-    let startDate = this.startDate.toString();
-    let endDate = this.endDate.toString();
-      // if valid date
-      if (this.startDate < this.endDate) {
-        this.getExcelData(startDate, endDate);
-      } 
-      // invalid date
-      else {
-        this.dateErrMssg = "please enter valid date range";
-      }
-    // set default date
-    this.startDate = new Date();
-    this.endDate = new Date()
-  }
+
 
   handelActions(action: any) {
     if (action.type === 'delete') {
@@ -115,6 +105,7 @@ export class CustomerTableComponent {
 
   handelFilter(filter: string) {
     this.filterValue = filter;
+    console.log(this.filterValue)
     this.getData(0);
   }
 
@@ -122,8 +113,25 @@ export class CustomerTableComponent {
     this.page.itemsPerPage = e;
     this.getData(0);
   }
-
-
+    
+  onFetch() {
+    // set err message empty
+    this.dateErrMssg = "";
+    // convert date to string
+    let startDate = this.startDate.toString();
+    let endDate = this.endDate.toString();
+      // if valid date
+      if (this.startDate < this.endDate) {
+        this.getExcelData(startDate, endDate);
+      } 
+      // invalid date
+      else {
+        this.dateErrMssg = "please enter valid date range";
+      }
+    // set default date
+    this.startDate = new Date();
+    this.endDate = new Date()
+  }
   
   getExcelData(startDate: string, endDate: string) {
     this.orderItemService.generateExcelOfOrderedVehicle(

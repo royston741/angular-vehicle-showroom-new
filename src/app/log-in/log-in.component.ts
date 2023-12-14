@@ -1,4 +1,4 @@
-import { Component } from '@angular/core';
+import { Component, OnInit } from '@angular/core';
 import { UserService } from '../services/user.service';
 import { Router } from '@angular/router';
 import { StorageService } from '../services/storage.service';
@@ -8,7 +8,7 @@ import { StorageService } from '../services/storage.service';
   templateUrl: './log-in.component.html',
   styleUrls: ['./log-in.component.css']
 })
-export class LogInComponent {
+export class LogInComponent implements OnInit {
 
   formUserName = { value: '', valid: false }
   formPassword = { value: '', valid: false }
@@ -16,6 +16,17 @@ export class LogInComponent {
   responseErrorMessage = [];
 
   constructor(private userService: UserService, private router: Router, private storageService: StorageService) { }
+  
+  ngOnInit(){
+    const user = JSON.parse(this.storageService.getItem("user"));
+    if (user != null) {
+      if (user.userType === "CUSTOMER") {
+        this.router.navigate(["customer"])
+      } else if (user.userType === "ADMIN") {
+        this.router.navigate(["admin"])
+      }
+    }
+  }
 
   onNavigate() {
     this.router.navigate(['registerCustomer'])
@@ -33,7 +44,7 @@ export class LogInComponent {
           this.storageService.storeItem("user", JSON.stringify({ id: data.id, userType: data.userType }))
           if (data.userType === "CUSTOMER") {
             this.router.navigate(["customer"])
-          } else if (data.userType === "ADMIN") { 
+          } else if (data.userType === "ADMIN") {
             this.router.navigate(["admin"])
           }
         }

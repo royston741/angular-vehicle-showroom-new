@@ -6,10 +6,16 @@
   [dataList]="vehicles"
   tabelName="vehicle"
   filterInputPlaceHolder="Name"
-  (pageChangeEvent)="getData($event)"
-  (pageSizeChangeEvent)="onPageSizeChange($event)"
   (sortEvent)="handelSorting($event)"
   (filterEvent)="handelFilter($event)"
   (actionEvent)="handelActions($event)"
-  viewFor="Order"
+  viewFor="order"
 ></app-table>
+
+<app-pagination-controls 
+  (pageSizeChangeEvent)="onPageSizeChange($event)" 
+  [includePageSize]="true" *ngIf="errMssg.length<=0 " 
+  [page]="page"
+  (pageChangeEvent)="getData($event)">
+</app-pagination-controls>
+

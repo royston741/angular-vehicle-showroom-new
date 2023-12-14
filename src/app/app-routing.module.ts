@@ -14,40 +14,12 @@ import { CustomerTableComponent } from './customer/customer-table/customer-table
 import { CustomerDetailsComponent } from './customer/customer-details/customer-details.component';
 import { OrderItemDetailComponent } from './order/order-item-detail/order-item-detail.component';
 import { RegisterAdminComponent } from './admin/register-admin/register-admin.component';
+import { AddVehicleComponent } from './vehicle/add-vehicle/add-vehicle.component';
+import { VehiclesTableComponent } from './vehicle/vehicles-table/vehicles-table.component';
+import { AddedVehicleViewComponent } from './vehicle/vehicles-table/added-vehicle-view';
+import { UpdateVehicleComponent } from './vehicle/update-vehicle/update-vehicle.component';
 
-// const routes: Routes = [
-//   { path: '', redirectTo: "login", pathMatch: "full" },
-//   { path: 'login', component: SignInComponent },
-//   { path: 'registerCustomer', component: RegisterCustomerFormComponent },
-//   {
-//     path: 'admin',
-//     component: AdminComponent,
-//     children: [
-//       { path: "", redirectTo: "allCustomers", pathMatch: "full" },
-//       {
-//         path: 'allCustomers',
-//         component: CustomerTableComponent,
-//       },
-//       { path: 'createCustomerForm', component: CreateFormComponent },
-//       { path: 'updateCustomerForm/:id', component: UpdateFormComponent },
-//       { path: 'customerDetails/:id', component: CustomerDetailsComponent },
-//       { path: 'customer/vehicleDetail/:id', component: VehicleDetailComponent },
-//     ]
-//   },
-//   {
-//     path: "customer",
-//     component: CustomerComponent,
-//     children: [
-//       { path: "", redirectTo: "allAvailableVehicles", pathMatch: "full" },
-//       { path: 'allAvailableVehicles', component: AllVehicleComponent },
-//       { path: 'customerProfile', component: CustomerProfileComponent },
-//       { path: 'orderDetail/name/:name/phoneNo/:phoneNo', component: OrderDetailComponent },
-//       { path: 'vehicleDescription/:id', component: VehicleDescriptionComponent },
-//       { path: 'placeOrder', component: PlaceOrderComponent }
-//     ]
-//   },
 
-// ];
 const routes: Routes = [
   { path: '', redirectTo: "login", pathMatch: "full" },
   { path: 'login', component: LogInComponent },
@@ -62,7 +34,6 @@ const routes: Routes = [
       { path: 'cart', component: CartComponent },
       { path: 'allOrders', component: CustomerOrdersComponent },
       { path: 'prodile', component: ProfileComponent },
-
     ]
   },
   {
@@ -76,8 +47,11 @@ const routes: Routes = [
       },
       { path: 'customerDetails/:id', component: CustomerDetailsComponent },
       { path: 'orderItemDetail/:id', component: OrderItemDetailComponent },
-      { path: 'registerAdmin', component: RegisterAdminComponent }
-
+      { path: 'registerAdmin', component: RegisterAdminComponent },
+      { path: 'addVehicle', component: AddVehicleComponent },
+      { path: 'addedVehicleTable', component: VehiclesTableComponent },
+      { path: 'vehicle/:id', component: AddedVehicleViewComponent },
+      { path: 'updateVehicle/:id', component: UpdateVehicleComponent }
     ]
   }, {
     path: "placeOrder",

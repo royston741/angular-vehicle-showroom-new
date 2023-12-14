@@ -2,7 +2,7 @@
     <div class="order_container">
         <div *ngFor="let item of items" class="order_item">
             <div class="img_container">
-                <img src={{item.vehicle.imgUrl}} alt={{item.vehicle.name}}>
+                <img src={{item.vehicle.vehicleImg}} alt={{item.vehicle.name}}>
             </div>
             <div class="order_desc">
                 <h2>{{item.vehicle.name}}</h2>
@@ -17,18 +17,11 @@
         <h2 *ngIf="items.length<=0">Your orders is empty.</h2>
     </div>
 
-    <div *ngIf="items.length>0" class="pagination_btns">
-        <button (click)="onPageChange('previous')" [disabled]="page.currentPage === 0">
-            Prev
-        </button>
-        <button *ngIf="page.totalPages > 0" (click)="onPageChange(1)" [class.page_btn_active]="page.currentPage == 0">
-            1
-        </button>
-        <button *ngIf="page.totalPages > 1" (click)="onPageChange(2)" [class.page_btn_active]="page.currentPage == 1">
-            2
-        </button>
-        <button (click)="onPageChange('foward')" [disabled]="page.currentPage === page.totalPages - 1">
-            Next
-        </button>
-    </div>
+    <app-pagination-controls 
+        *ngIf="items.length!=0" 
+        [page]="page" 
+        (pageChangeEvent)="handelPageChange($event)">
+    </app-pagination-controls>
+
+   
 </div>

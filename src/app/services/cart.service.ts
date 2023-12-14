@@ -21,20 +21,20 @@ export class CartService {
     itemType: string,
     vehicle: Vehicle
 }, customerId: number): Observable<Response> {
-    return this.http.post<Response>(`${this.baseUrl}addToCart/${customerId}`, carrtItem)
+    return this.http.post<Response>(`${this.baseUrl}addToCart?id=${customerId}`, carrtItem)
   }
 
   removeItemFromCart(carrtItem: Item, customerId: number): Observable<Response> {
-    return this.http.put<Response>(`${this.baseUrl}removeItemFromCart/${customerId}`, carrtItem)
+    return this.http.put<Response>(`${this.baseUrl}removeItemFromCart?id=${customerId}`, carrtItem)
   }
 
   clearCart(customerId: number): Observable<Response> {
-    return this.http.get<Response>(`${this.baseUrl}clearCart/${customerId}`);
+    return this.http.get<Response>(`${this.baseUrl}clearCart?id=${customerId}`);
   }
 
   getCartByCustomerId(id: number) {
     return this.http.get<Response>(
-      `${this.baseUrl}getCartByCustomerId/${id}`
+      `${this.baseUrl}getCartByCustomerId?id=${id}`
     );
   }
 }

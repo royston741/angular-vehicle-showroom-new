@@ -21,10 +21,12 @@ export class ProfileComponent {
   disabled = true;
 
   responseSuccess = false;
+
   responseErrorMessage = [];
 
-  constructor(private userService: UserService, private router: Router,
-    private storageService: StorageService, private navigateService: NavigateService) { }
+  constructor(
+    private userService: UserService, private router: Router,
+    private storageService: StorageService) { }
 
   ngOnInit() {
     this.customerId = JSON.parse(this.storageService.getItem("user")).id;

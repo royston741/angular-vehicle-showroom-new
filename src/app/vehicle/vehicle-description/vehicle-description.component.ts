@@ -21,8 +21,7 @@ export class VehicleDescriptionComponent implements OnInit {
     rating: 0,
     vehicleType: '',
     twoWheelerType: '',
-    imgUrl: '',
-    description: ''
+    description: '', vehicleImg: ""
   };
 
   quantity: number = 1;
@@ -38,11 +37,14 @@ export class VehicleDescriptionComponent implements OnInit {
 
   addToCartSuccess = false
 
-  constructor(private activeRoute: ActivatedRoute,
+  constructor(
+    private activeRoute: ActivatedRoute,
     private vehicleService: VehicleService,
     private cartService: CartService,
     private storageService: StorageService,
-    private router: Router, private shareDataService: ShareDataService,) { }
+    private router: Router, 
+    private shareDataService: ShareDataService)
+     { }
 
   get stars() {
     return Array(Math.floor(this.rating)).fill(0);

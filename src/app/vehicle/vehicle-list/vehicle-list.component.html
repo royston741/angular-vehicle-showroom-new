@@ -1,55 +1,82 @@
 <div class="vehicle_list_container">
     <button class="filter_btn" (click)="toggleActive=!toggleActive">
-        <h3>Filter</h3> 
+        <h3>Filter</h3>
         <span class="material-symbols-outlined">
             filter_list
-            </span>
+        </span>
     </button>
     <div class="all_filters {{toggleActive&& 'toggle_active'}}">
         <div class="vehicle_list_filter_container">
-            <app-select selectFor="Sort by" [options]="['All','rating',
-        'price --- low to high',
-        'price -- high to low']" (selectEventEmitter)="onSelectSortBy($event)"></app-select>
+            <app-select 
+                selectFor="Sort by" 
+                [options]="['All','rating','price --- low to high','price -- high to low']" 
+                (selectEventEmitter)="onSelectSortBy($event)">
+            </app-select>
 
-            <app-select selectFor="Vehicle type :" [options]="vehicleTypeList"
-                (selectEventEmitter)="onSelectVehicleType($event)"></app-select>
+            <app-select 
+                selectFor="Vehicle type :" [options]="vehicleTypeList"
+                (selectEventEmitter)="onSelectVehicleType($event)">
+            </app-select>
 
-            <app-select *ngIf="filter.vehicleType==='BIKE'" selectFor="Two wheeler type :"
-                [options]="twoWheelerTypeList" (selectEventEmitter)="onSelectTwoWheelerType($event)"></app-select>
+            <app-select 
+                *ngIf="filter.vehicleType==='BIKE'" 
+                selectFor="Two wheeler type :"
+                [options]="twoWheelerTypeList" 
+                (selectEventEmitter)="onSelectTwoWheelerType($event)">
+            </app-select>
         </div>
 
         <div class="price_filter">
             <Label>Start price : </Label>
-            <input #element type="number" [value]="filter.startingPrice"
-                (change)="onPriceChange({type:'start',value:element.value})" [min]="startPrice" min="0">
+            <input #element 
+                type="number" 
+                [value]="filter.startingPrice"
+                (keyup)="checkIfPriceRangeIsValid(element.value)"
+                (change)="onPriceChange({type:'start',value:element.value})" 
+                [min]="startPrice" min="0">
+
             <Label>End price : </Label>
-            <input #element2 type="number" [value]="filter.endingPrice"
+            <input
+                #element2 
+                type="number" 
+                [value]="filter.endingPrice"
+                (keyup)="checkIfPriceRangeIsValid(element2.value)"
                 (change)="onPriceChange({type:'end',value:element2.value})" [max]="endPrice" min="0">
-            <button class="search_btn" (click)="getAllVehiclesData()">Search</button>
+            <p class="err" *ngIf="isSearchBtnDisabled">Please enter valid price range</p>
+            <button class="search_btn" (click)="getAllVehiclesData(0)" [disabled]="isSearchBtnDisabled">Search</button>
         </div>
     </div>
 
-    <ul [ngClass]="vehicles.length>0?'vehicle_list':'err_in_list'">
-        <li class="vehicle" *ngFor="let vehicle of vehicles" (click)="onNavigateToVehicleDescription(vehicle.id)">
-            <div>
-                <div class="img_container">
-                    <img src={{vehicle.imgUrl}} alt={{vehicle.imgUrl}} style="max-width: 300px; max-height: 300px;">
+    <div>
+        <ul class="list_size" [ngClass]="vehicles.length>0?'vehicle_list':'err_in_list'">
+            <li class="vehicle" *ngFor="let vehicle of vehicles" (click)="onNavigateToVehicleDescription(vehicle.id)">
+                <div>
+                    <div class="img_container">
+
+                        <img src={{vehicle.vehicleImg}} alt={{vehicle.name}}
+                            style="max-width: 300px; max-height: 300px;">
+                    </div>
+
+                    <span class="vehicle_desc">
+                        <p>{{vehicle.rating}} &#9733;</p>
+                        <h3> {{vehicle.name}} </h3>
+                        <p>Price : {{vehicle.price | currency:'INR'}}</p>
+                    </span>
                 </div>
-
-                <span class="vehicle_desc">
-                    <p>{{vehicle.rating}} &#9733;</p>
-                    <h3> {{vehicle.name}} </h3>
-                    <p>Price : {{vehicle.price | currency:'INR'}}</p>
-                </span>
+            </li>
+            <div *ngFor="let err of errMssg">
+                <h2>{{err}}</h2>
             </div>
-        </li>
-        <div *ngFor="let err of errMssg" class="">
-            <h2>{{err}}</h2>
-        </div>
-        <div *ngIf="isLoadingVehicles" class="loader">
-            <div class="rotate load_big"></div>
-            <h2>Loading</h2>
-        </div>
-    </ul>
-
+            <div *ngIf="isLoadingVehicles" class="loader">
+                <div class="rotate load_big"></div>
+                <h2>Loading</h2>
+            </div>
+        </ul>
+        <app-pagination-controls 
+            *ngIf="errMssg.length<=0 " 
+            [page]="page"
+            (pageChangeEvent)="handelPageChange($event)">
+        </app-pagination-controls>
+  
+    </div>
 </div>

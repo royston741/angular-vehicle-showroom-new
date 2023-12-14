@@ -3,35 +3,62 @@
     <form>
         <h1>Customer profile</h1>
 
-        <app-input [inputAttribute]="[{key:'type',value:'text'},{key:'placeholder',value:'Fitst name'}]"
-            [inputValue]="formFirstName.value" [isDisabled]="disabled" errMssg="Invalid first name"
-            [validateInput]="validateName" (inputEventEmmiter)="formFirstName=$event"></app-input>
+        <app-input 
+            [inputAttribute]="[{key:'type',value:'text'},{key:'placeholder',value:'Fitst name'}]"
+            [inputValue]="formFirstName.value"
+             [isDisabled]="disabled" 
+             errMssg="Invalid first name"
+            [validateInput]="validateName"
+             (inputEventEmmiter)="formFirstName=$event">
+        </app-input>
 
         <app-input
             [inputAttribute]="[{key:'type',value:'text'},{key:'placeholder',value:'Last name'},{key:'value',value:formLastName.value}]"
-            [inputValue]="formLastName.value" [isDisabled]="disabled" errMssg="Invalid last name"
-            [validateInput]="validateName" (inputEventEmmiter)="formLastName=$event"></app-input>
+            [inputValue]="formLastName.value" 
+            [isDisabled]="disabled" 
+            errMssg="Invalid last name"
+            [validateInput]="validateName" 
+            (inputEventEmmiter)="formLastName=$event">
+        </app-input>
 
         <app-input
             [inputAttribute]="[{key:'type',value:'text'},{key:'placeholder',value:'Email'},{key:'value',value:formEmail.value}]"
-            [inputValue]="formEmail.value" [isDisabled]="disabled" errMssg="Invalid Email"
-            [validateInput]="validateEmail" (inputEventEmmiter)="formEmail=$event"></app-input>
+            [inputValue]="formEmail.value" 
+            [isDisabled]="disabled" 
+            errMssg="Invalid Email"
+            [validateInput]="validateEmail" 
+            (inputEventEmmiter)="formEmail=$event">
+        </app-input>
 
         <app-input
             [inputAttribute]="[{key:'type',value:'number'},{key:'placeholder',value:'phone'},{key:'value',value:formPhoneNo.value}]"
-            [inputValue]="formPhoneNo.value" [isDisabled]="disabled" errMssg="Invalid phone number"
-            [validateInput]="validatePhoneNo" (inputEventEmmiter)="formPhoneNo=$event"></app-input>
+            [inputValue]="formPhoneNo.value" 
+            [isDisabled]="disabled" 
+            errMssg="Invalid phone number"
+            [validateInput]="validatePhoneNo" 
+            (inputEventEmmiter)="formPhoneNo=$event">
+        </app-input>
 
         <app-input
             [inputAttribute]="[{key:'type',value:'password'},{key:'placeholder',value:'password'},{key:'value',value:formPassword.value}]"
-            errMssg="Invalid password" [validateInput]="validatePassword" [inputValue]="formPassword.value"
-            [isDisabled]="disabled" (inputEventEmmiter)="formPassword=$event"></app-input>
+            errMssg="Invalid password" 
+            [validateInput]="validatePassword" 
+            [inputValue]="formPassword.value"
+            [isDisabled]="disabled" 
+            (inputEventEmmiter)="formPassword=$event">
+        </app-input>
 
         <div class="address_container">
-            <textarea [ngClass]="(!(formAddress.valid )==true)?'err':''"  [disabled]="disabled" #address (keyup)="validateAddress(address.value)"
-                (blur)="validateAddress(address.value)" name="address" [(ngModel)]="formAddress.value"></textarea>
+            <textarea 
+                [ngClass]="(!(formAddress.valid )==true)?'err':''"  
+                [disabled]="disabled" #address 
+                (keyup)="validateAddress(address.value)"
+                (blur)="validateAddress(address.value)" 
+                name="address"
+                [(ngModel)]="formAddress.value">
+            </textarea>
                 <span class="err_mssg" *ngIf="!(formAddress.valid )">please enter valid address</span>
-            </div>
+        </div>
 
         <p class="success_msg" *ngIf="responseSuccess">
             Success
@@ -41,9 +68,13 @@
         </div>
 
         <button *ngIf="disabled" (click)="disabled=false" class="btn btn_color">Edit</button>
-        <button class="btn_color"  (click)="onSubmitForm($event)" *ngIf="!disabled"
-            [disabled]="!(formFirstName.valid&&formLastName.valid&&formEmail.valid&&formPhoneNo.valid&&formPassword.valid&& formAddress.value.length>8)">submit</button>
+        <button 
+            class="btn_color"  
+            (click)="onSubmitForm($event)" 
+            *ngIf="!disabled"
+            [disabled]="!(formFirstName.valid&&formLastName.valid&&formEmail.valid&&formPhoneNo.valid&&formPassword.valid&& formAddress.value.length>8)">
+            submit
+        </button>
         <button class="transparent_btn" *ngIf="!disabled" (click)="onCancelForm()">Cancel</button>
-
     </form>
 </div>

@@ -160,7 +160,7 @@
       }
 
       .menu_profile{
-        position: fixed;
+        position: absolute;
         background-color: var(--we-page-color);
         width: 100%;
         z-index: 1;

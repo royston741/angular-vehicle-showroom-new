@@ -1,4 +1,5 @@
 <div class="align_center_screen">
+    <app-back-button customClass="align_back_btn_admin"></app-back-button>
     <div class="details" >
         <div class="align_content"><h2>Name : </h2>{{orderItem.vehicle.name}}</div>
         <div class="align_content"><h2>Booking date : </h2>{{orderItem.orderItemBuyDate}}</div>
@@ -9,4 +10,5 @@
         <div class="align_content"><h2>initial price : </h2>{{orderItem.initialPrice | currency:'INR'}}</div>
         <div class="align_content"><h2>total : </h2>{{orderItem.finalPrice | currency:'INR'}}</div>
     </div>
+    
 </div>

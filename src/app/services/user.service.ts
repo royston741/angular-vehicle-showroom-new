@@ -29,7 +29,7 @@ export class UserService {
   }
 
   getCustomerById(id: number): Observable<Response> {
-    return this.http.get<Response>(`${this.baseUrl}getCustomerById/${id}`);
+    return this.http.get<Response>(`${this.baseUrl}getCustomerById?id=${id}`);
   }
 
   getAllCustomers(
@@ -39,9 +39,6 @@ export class UserService {
     direction: string,
     value: string
   ): Observable<Response> {
-    console.log(
-      `${this.baseUrl}getAllCustomers?pageNo=${pageNumber}&&pageSize=${pageSize}&&sortBy=${column}&&sortDirection=${direction}&&filterValue=${value}`
-    );
     return this.http.get<Response>(
       `${this.baseUrl}getAllCustomers?pageNo=${pageNumber}&&pageSize=${pageSize}&&sortBy=${column}&&sortDirection=${direction}&&filterValue=${value}`
     );

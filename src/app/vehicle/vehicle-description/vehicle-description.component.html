@@ -1,8 +1,8 @@
 <div class="vehicle_desc_container top">
-
+    <app-back-button customClass="align_back_btn"></app-back-button>
     <div class="vehicle">
         <div class="img_container">
-            <img src={{vehicle.imgUrl}} alt="">
+            <img src={{vehicle.vehicleImg}} >
         </div>
 
         <div class="vehcile_d">
@@ -104,7 +104,7 @@
     </div>
 
     <div *ngIf="addToCartSuccess" class=" notification">
-        <div  class="add_cart_success">Item added to cart.</div>
+        <div class="add_cart_success">Item added to cart.</div>
     </div>
 
 </div>

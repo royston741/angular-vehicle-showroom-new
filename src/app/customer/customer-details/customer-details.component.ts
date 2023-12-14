@@ -28,7 +28,6 @@ export class CustomerDetailsComponent implements OnInit {
   constructor(
     private route: ActivatedRoute,
     private customerService: UserService,
-    private orderItemService: OrderItemService
   ) {}
 
   ngOnInit() {

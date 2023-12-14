@@ -16,38 +16,36 @@ export class CustomerComponent implements OnInit, DoCheck {
   name!: string;
 
   cartTotalItems = 0;
-  toggleActive=false;
+  toggleActive = false;
 
-  constructor(private shareDataService: ShareDataService, 
-    private cartService: CartService, 
+  constructor(
+    private cartService: CartService,
     private customerService: UserService,
-     private router: Router, 
-     private storageService: StorageService,
-      public navigateService: NavigateService) { }
-
-
+    private router: Router,
+    private storageService: StorageService,
+    public navigateService: NavigateService) 
+    { }
 
   ngOnInit() {
-
     this.storageService.storeItem("added", "0");
-    
+
     const user = JSON.parse(this.storageService.getItem("user"))
     if (user == null || user.userType != "CUSTOMER") {
       this.router.navigate(["login"])
     }
-    
+
     this.setTotalCartItems()
     this.customerService.getCustomerById(user.id).subscribe(response => { this.name = response.responseData.firstName })
   }
 
   ngDoCheck() {
-    // if itema added to cart call cart capi and update cart caount
+    // if itema added to cart call cart api and update cart count
     if (this.storageService.getItem("added") == 1) {
-      this.storageService.storeItem("added","0")
+      this.storageService.storeItem("added", "0")
       this.setTotalCartItems()
     }
   }
-  
+
   logOut() {
     this.storageService.removeItem("user")
     this.router.navigate(["login"])

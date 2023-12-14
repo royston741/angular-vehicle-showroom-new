@@ -14,14 +14,15 @@ export class AdminComponent {
 
   constructor(private customerService: UserService, private router: Router, private storageService: StorageService, public navigateService: NavigateService) { }
 
-   ngOnInit() {
+  ngOnInit() {
     const user = JSON.parse(this.storageService.getItem("user"))
     if (user == null || user.userType != "ADMIN") {
       this.router.navigate(["login"])
     }
     this.customerService.getCustomerById(user.id).subscribe(response => { this.name = response.responseData.firstName })
   }
-   logOut() {
+  
+  logOut() {
     this.storageService.removeItem("user")
     this.router.navigate(["login"])
   }

@@ -3,39 +3,57 @@
     <form (submit)="onSubmitForm($event)" class="form">
         <h1>Register {{formFor.toLowerCase()}}</h1>
 
-        <app-input [inputAttribute]="[{key:'type',value:'text'},{key:'placeholder',value:'First name'}]"
-            [inputValue]="formFirstName.value" errMssg="Minimum 3 letters required in first name" [validateInput]="validateName"
-            (inputEventEmmiter)="formFirstName=$event"></app-input>
+        <app-input 
+            [inputAttribute]="[{key:'type',value:'text'},{key:'placeholder',value:'First name'}]"
+            [inputValue]="formFirstName.value" errMssg="Minimum 3 letters required in first name" 
+            [validateInput]="validateName"
+            (inputEventEmmiter)="formFirstName=$event">
+        </app-input>
 
         <app-input
             [inputAttribute]="[{key:'type',value:'text'},{key:'placeholder',value:'Last name'},{key:'value',value:formLastName.value}]"
-            [inputValue]="formLastName.value" errMssg="Minimum 3 letters required in last name" [validateInput]="validateName"
-            (inputEventEmmiter)="formLastName=$event"></app-input>
+            [inputValue]="formLastName.value" errMssg="Minimum 3 letters required in last name" 
+            [validateInput]="validateName"
+            (inputEventEmmiter)="formLastName=$event">
+        </app-input>
 
         <app-input
             [inputAttribute]="[{key:'type',value:'text'},{key:'placeholder',value:'Email'},{key:'value',value:formEmail.value}]"
-            [inputValue]="formEmail.value" errMssg="Invalid Email" [validateInput]="validateEmail"
-            (inputEventEmmiter)="formEmail=$event"></app-input>
+            [inputValue]="formEmail.value" errMssg="Invalid Email" 
+            [validateInput]="validateEmail"
+            (inputEventEmmiter)="formEmail=$event">
+        </app-input>
 
         <app-input
             [inputAttribute]="[{key:'type',value:'number'},{key:'placeholder',value:'phone'},{key:'value',value:formPhoneNo.value}]"
-            [inputValue]="formPhoneNo.value" errMssg="phone no. should consist of 10 digits." [validateInput]="validatePhoneNo"
-            (inputEventEmmiter)="formPhoneNo=$event"></app-input>
+            [inputValue]="formPhoneNo.value" errMssg="phone no. should consist of 10 digits." 
+            [validateInput]="validatePhoneNo"
+            (inputEventEmmiter)="formPhoneNo=$event">
+        </app-input>
 
         <app-input
             [inputAttribute]="[{key:'type',value:'text'},{key:'placeholder',value:'password'},{key:'value',value:formPassword.value}]"
-            errMssg="Password should be minimum 8 characters" [validateInput]="validatePassword" [inputValue]="formPassword.value"
-            (inputEventEmmiter)="formPassword=$event"></app-input>
+            errMssg="Password should be minimum 8 characters"
+            [validateInput]="validatePassword"
+            [inputValue]="formPassword.value"
+            (inputEventEmmiter)="formPassword=$event">
+        </app-input>
 
         <div  *ngIf="formFor==='CUSTOMER'" class="address_container">
-            <textarea [ngClass]="(!(formAddress.valid )==true)?'err':''" #address placeholder="Address *" (keyup)="validateAddress(address.value)" (blur)="validateAddress(address.value)"
-                name="address" [(ngModel)]="formAddress.value"></textarea>
+            <textarea
+                [ngClass]="(!(formAddress.valid )==true)?'err':''"
+                 #address placeholder="Address *" 
+                (keyup)="validateAddress(address.value)"
+                (blur)="validateAddress(address.value)"
+                name="address" [(ngModel)]="formAddress.value">
+            </textarea>
             <span class="err_mssg" *ngIf="!(formAddress.valid )">please enter valid address</span>
         </div>
 
         <span *ngIf="responseSuccess" class="success">
             Success
         </span>
+        
         <div *ngIf="responseErrorMessage.length>0" class="errMssg">
             <p *ngFor="let mssg of responseErrorMessage">- {{mssg}}</p>
         </div>

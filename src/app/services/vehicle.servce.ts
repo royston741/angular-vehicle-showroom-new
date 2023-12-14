@@ -14,19 +14,33 @@ export class VehicleService {
 
   getVehicleById(id: number) {
     return this.http.get<Response>(
-      `${this.baseUrl}getVehicleById/${id}`
+      `${this.baseUrl}getVehicleById?id=${id}`
     );
+  }
+
+  addVehicle(vehicle:any) {
+    return this.http.post<Response>(
+      `${this.baseUrl}createVehicle`
+    ,vehicle);
+  }
+
+  updateVehicle(vehicle:any) {
+    return this.http.put<Response>(
+      `${this.baseUrl}updateVehicle`
+    ,vehicle);
   }
 
   getAllVehicles(
     column: string,
     direction: string,
+    pageNo:number,
+    pageSize:number,
     startPrice: number,
     endPrice: number,
     vehicleType: string,
-    twoWheelerType: string
+    twoWheelerType: string,
   ): Observable<Response> {
-    return this.http.get<Response>(`${this.baseUrl}getAllVehicles?column=${column}&direction=${direction}&startPrice=${startPrice}&endPrice=${endPrice}&vehicleType=${vehicleType}&twoWheelerType=${twoWheelerType}`);
+    return this.http.get<Response>(`${this.baseUrl}getAllVehicles?column=${column}&direction=${direction}&startPrice=${startPrice}&endPrice=${endPrice}&vehicleType=${vehicleType}&twoWheelerType=${twoWheelerType}&pageSize=${pageSize}&pageNumber=${pageNo}`);
   }
 
 

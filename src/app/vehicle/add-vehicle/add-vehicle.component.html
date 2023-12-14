@@ -1,0 +1,79 @@
+<div class="align_center_screen">
+<!-- <app-back-button></app-back-button> -->
+    <form [formGroup]="addVehicleForm" (submit)="onSubmit()">
+
+        <div class="input_container">
+            <label>Vehicle name <span class="required">*</span> :</label>
+            <input 
+                type="text" 
+                formControlName="name"
+                [ngClass]="(f['name'].errors && f['name'].touched) ? 'err_border':''">
+            <p *ngIf="f['name'].errors && f['name'].touched" class="err">
+                Vehicle name should be greater than 3</p>
+        </div>
+
+        <div class="input_container">
+            <label>Vehicle price <span class="required">*</span> :</label>
+            <input 
+                type="number" 
+                formControlName="price" min="1"
+                [ngClass]="(f['price'].errors && f['price'].touched) ? 'err_border':''">
+            <p *ngIf="f['price'].errors && f['price'].touched" class="err">Enter valid price</p>
+        </div>
+
+        <div class="input_container">
+            <label>Rating <span class="required">*</span> :</label>
+            <input 
+                type="number" 
+                formControlName="rating" min="1" max="5"
+                [ngClass]="(f['rating'].errors && f['rating'].touched)?'err_border':''">
+            <p *ngIf="f['rating'].errors && f['rating'].touched" class="err">Enter valid rating</p>
+        </div>
+
+        <div class="input_container">
+            <label>Vehicle Type <span class="required">*</span> :</label>
+            <select formControlName="vehicleType">
+                <option *ngFor="let type of vehicleTypeList" [value]="type">{{type}}</option>
+            </select>
+        </div>
+
+        <div class="input_container" *ngIf="addVehicleForm.value.vehicleType=='BIKE'">
+            <label>Two wheeler Type <span class="required">*</span> :</label>
+            <select formControlName="twoWheelerType">
+                <option *ngFor="let type of twoWheelerTypeList" [value]="type">{{type}}</option>
+            </select>
+        </div>
+
+    
+
+        <div class="input_container">
+            <label>Vehicle image<span class="required">*</span> :</label>
+            <div class="img_selector">
+                <input 
+                    type="file" 
+                    formControlName="vehicleImg" 
+                    (change)="onFileSelect($event)">
+                <img *ngIf="imgUrl" class="selected_img" src={{imgUrl}} alt="">
+            </div>
+        </div>
+
+        <div class="textarea_container">
+            <label>Description <span class="required">*</span> :</label>
+            <textarea 
+                type="text" 
+                formControlName="description"
+                [ngClass]="(f['description'].errors && f['description'].touched)?'err_border':''"></textarea>
+            <p *ngIf="f['description'].errors && f['description'].touched" class="err">Enter valid description</p>
+        </div>
+
+        <div class="err_container" *ngIf="errMssgList.length">
+            <p *ngFor="let err of errMssgList">- {{err}}</p>
+        </div>
+
+        <div class="success_container" *ngIf="isSuccess">Success</div>
+        <button class="submit_btn" [disabled]="!addVehicleForm.valid" type="submit">Submit</button>
+        <button *ngIf="vehicleId>0" class="transparent_btn" (click)="navigateService.navigateToPreviousPage()"  >Cancel</button>
+
+    </form>
+
+</div>
