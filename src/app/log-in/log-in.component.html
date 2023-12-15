@@ -10,7 +10,7 @@
     </app-input>
 
     <app-input 
-    [   inputAttribute]="[{key:'type',value:'password'},{key:'placeholder',value:'password'}]"
+        [inputAttribute]="[{key:'type',value:'password'},{key:'placeholder',value:'password'}]"
         errMssg="Invalid password"
         [validateInput]="validatePassword"
         (inputEventEmmiter)="formPassword=$event">
