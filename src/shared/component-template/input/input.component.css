@@ -7,11 +7,6 @@ input{
     outline: none;
 }
 
-div{
-    height: 75px;
-}
-
-
 span{
     font-size: 0.8rem;
     color: red;
@@ -29,7 +24,27 @@ input::-webkit-inner-spin-button {
 }
 
 .input_label{
-    margin: 5px 0 10px;
+    margin: 15px 0 0 0;
+    display: flex;
+    justify-content: space-between;
+    padding: 0px 8px 0 0;
+    width: 110px;
+}
+
+.input_container{
+    /* display: flex; */
+    display: grid;
+    grid-template-columns: 1fr 3fr;
+}
+
+
+.input_and_error{
+    height: 75px;
+}
+
+.required{
+    color: red;
+    margin-left: 5px;
 }
 
 @media screen and (max-width:330px){

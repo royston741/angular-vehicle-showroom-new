@@ -1,14 +1,15 @@
-.form{
-    height: 85vh;
-    width: 400px;
+.form {
+    min-height: 85vh;
+    min-width: 30vw;
     padding: 50px;
 }
 
-.form h1{
+.form h1 {
     font-size: 2rem;
+    text-align: center;
 }
 
-textarea{
+textarea {
     width: 100%;
     padding: 14px 13px;
     border-radius: 3px;
@@ -17,20 +18,21 @@ textarea{
     outline: none;
 }
 
-.err_mssg{
+.err_mssg {
     font-size: 0.8rem;
     color: red;
 }
 
-.err{
+.err {
     border: 1px solid red;
 }
 
-.address_container{
-    height: 100px;
+.address_container {
+    display: grid;
+    grid-template-columns: 1fr 3fr;
 }
 
-.success{
+.success {
     color: green;
     border: 1px solid green;
     background-color: rgb(173, 210, 173);
@@ -39,7 +41,7 @@ textarea{
     margin: 10px 0;
 }
 
-.errMssg{
+.errMssg {
     border: 1px solid rgb(133, 22, 22);
     background-color: rgb(218, 154, 154);
     margin: 10px 0;
@@ -47,8 +49,61 @@ textarea{
     border-radius: 4px;
 }
 
-.errMssg p{
+.errMssg p {
     font-size: 0.9rem;
     color: rgb(133, 22, 22);
     padding: 4px 0 2px 5px;
+}
+
+label {
+    font-weight: bold;
+    margin: 15px 0 0 0;
+    display: flex;
+    justify-content: space-between;
+    padding: 0px 8px 0 0;
+    width: 110px;
+}
+
+
+.input_and_error {
+    height: 100px;
+}
+
+.required {
+    color: red;
+}
+
+@media screen and (max-width:1500px) {
+    .form {
+        width: 40vw;
+    }
+}
+
+@media screen and (max-width:1100px) {
+    .form {
+        width: 50vw;
+    }
+}
+
+@media screen and (max-width:950px) {
+    .form {
+        width: 70vw;
+    }
+}
+
+@media screen and (max-width:650px) {
+    .form {
+        width: 90vw;
+    }
+}
+
+@media screen and (max-width:550px) {
+    .form h1{
+        font-size: 1.6rem;
+    }
+
+    .form {
+        width: 100%;
+        height: 100%;
+    }
 }

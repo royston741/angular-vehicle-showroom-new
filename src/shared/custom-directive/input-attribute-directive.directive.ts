@@ -15,9 +15,7 @@ export class InputAttributeDirective implements OnInit {
     ngOnInit() {
 
         this.attributeArray.forEach(attribute => {
-            if (attribute.key === "placeholder") {
-                attribute.value=attribute.value+ " *"
-            }
+          
             this.renderer.setAttribute(this.el.nativeElement, attribute.key, attribute.value)
         })
     }
