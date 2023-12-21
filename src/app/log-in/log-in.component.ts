@@ -2,6 +2,7 @@ import { Component, OnInit } from '@angular/core';
 import { UserService } from '../services/user.service';
 import { Router } from '@angular/router';
 import { StorageService } from '../services/storage.service';
+import { NavigateService } from '../services/navigate.service';
 
 @Component({
   selector: 'app-log-in',
@@ -15,7 +16,7 @@ export class LogInComponent implements OnInit {
 
   responseErrorMessage = [];
 
-  constructor(private userService: UserService, private router: Router, private storageService: StorageService) { }
+  constructor(private userService: UserService, private router: Router, private storageService: StorageService,public navigateService:NavigateService) { }
   
   ngOnInit(){
     const user = JSON.parse(this.storageService.getItem("user"));
@@ -59,7 +60,7 @@ export class LogInComponent implements OnInit {
   }
 
   validatePassword(value: string) {
-    return value.trim().length > 8;
+    return value.trim().length >=8;
   }
 
 }

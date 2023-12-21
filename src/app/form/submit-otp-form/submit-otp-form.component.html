@@ -1,0 +1,30 @@
+<div class="align_center_screen">
+    <app-back-button></app-back-button>
+    <form class="form" [formGroup]="validateOtpForm" *ngIf="!responseSuccess">
+        <h1>Reset Password</h1>
+        <p class="email_sent">An email with a OTP has benn sent to <b>{{email}}</b> </p>
+        <div class="input_err_container">
+
+            <div class="input_container" [ngClass]="(otp['otp'].errors && otp['otp'].touched) ? 'err_border':''">
+                <label 
+                *ngIf="isOtpFieldTouched" 
+                class="input_label  {{isOtpFieldTouched&& 'input_active'}}">Enter OTP</label>
+                <input (click)="isOtpFieldTouched=true" formControlName="otp" type="number"  placeholder="{{!isOtpFieldTouched? 'Enter OTP':''}}"
+                ngClass="{{isOtpFieldTouched &&'input_is_active'}}"
+                >
+            </div>
+            <p *ngIf="(otp['otp'].errors && otp['otp'].touched)" class="err_mssg"  >
+                please enter valid OTP.
+            </p>
+        </div>
+
+        <div class="errMssg" *ngIf="errMssg.length>0">
+            <p *ngFor="let err of errMssg">- {{err}}</p>
+        </div>
+
+        <button [disabled]="!validateOtpForm.valid" (click)="onNext()">
+            <p *ngIf="!isLoading">Next</p>
+            <div *ngIf="isLoading" class="rotate_loader load_small"></div>
+        </button>
+    </form>
+</div>

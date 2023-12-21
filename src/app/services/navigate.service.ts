@@ -29,6 +29,18 @@ export class NavigateService {
         this.router.navigate(["login"])
     }
 
+    navigateToGetOtp(){
+        this.router.navigate(["forgotPassword","getOtp"])
+    }
+
+    navigateToSubmitOtp(){
+        this.router.navigate(["forgotPassword","submitOtp"])
+    }
+
+    navigateToResetPassword(){
+        this.router.navigate(["forgotPassword","resetPassword"])
+    }
+
     navigateToAdminHome(){
         this.router.navigate(["admin","allCustomers"])
     }

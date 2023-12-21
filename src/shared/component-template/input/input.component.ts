@@ -45,6 +45,9 @@ export class InputComponent implements OnInit {
   inputValue: string = "";
   isError: boolean = false;
 
+  @Input()
+  valueToCompare = ""
+
   ngOnInit() {
     // this.inputAttribute.forEach(attribute=>{
     //   if(attribute.key==="placeholder"){
@@ -54,7 +57,13 @@ export class InputComponent implements OnInit {
   }
 
   onValidateInput() {
-    this.isError = !this.validateInput(this.inputValue)
+    if (this.valueToCompare.length > 0) {
+      console.log('Confirm password')
+      this.isError = !this.validateInput({ value: this.inputValue, valueToCompare: this.valueToCompare })
+    }
+    else {
+      this.isError = !this.validateInput(this.inputValue)
+    }
     this.inputEventEmmiter.emit({ value: this.inputValue, valid: !this.isError })
   }
 

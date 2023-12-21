@@ -18,12 +18,23 @@ import { AddVehicleComponent } from './vehicle/add-vehicle/add-vehicle.component
 import { VehiclesTableComponent } from './vehicle/vehicles-table/vehicles-table.component';
 import { AddedVehicleViewComponent } from './vehicle/vehicles-table/added-vehicle-view';
 import { UpdateVehicleComponent } from './vehicle/update-vehicle/update-vehicle.component';
+import { GetOtpFormComponent } from './form/get-otp-form/get-otp-form.component';
+import { ResetPasswordFormComponent } from './form/reset-password-form/reset-password-form.component';
+import { SubmitOtpFormComponent } from './form/submit-otp-form/submit-otp-form.component';
 
 
 const routes: Routes = [
   { path: '', redirectTo: "login", pathMatch: "full" },
   { path: 'login', component: LogInComponent },
   { path: 'registerCustomer', component: RegisterUserComponent },
+  {
+    path: "forgotPassword",
+    children: [
+      { path: "getOtp", component:GetOtpFormComponent },
+      { path: "submitOtp", component:SubmitOtpFormComponent },
+      { path: "resetPassword", component:ResetPasswordFormComponent },
+    ]
+  },
   {
     path: "customer",
     component: CustomerComponent,

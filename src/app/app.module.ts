@@ -31,6 +31,9 @@ import { VehiclesTableComponent } from './vehicle/vehicles-table/vehicles-table.
 import { AddedVehicleViewComponent } from './vehicle/vehicles-table/added-vehicle-view';
 import { UpdateVehicleComponent } from './vehicle/update-vehicle/update-vehicle.component';
 import { PaginationControlsComponent } from '../shared/component-template/pagination-controls/pagination-controls.component';
+import { GetOtpFormComponent } from './form/get-otp-form/get-otp-form.component';
+import { ResetPasswordFormComponent } from './form/reset-password-form/reset-password-form.component';
+import { SubmitOtpFormComponent } from './form/submit-otp-form/submit-otp-form.component';
 // import DataTables from 'datatables.net';
 
 @NgModule({
@@ -61,7 +64,10 @@ import { PaginationControlsComponent } from '../shared/component-template/pagina
      VehiclesTableComponent,
      AddedVehicleViewComponent,
      UpdateVehicleComponent,
-     PaginationControlsComponent
+     PaginationControlsComponent,
+     GetOtpFormComponent,
+     ResetPasswordFormComponent,
+     SubmitOtpFormComponent
   ],
   imports: [
     BrowserModule,

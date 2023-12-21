@@ -50,13 +50,32 @@ export class UserService {
       customerData
     );
   }
-//   deleteCustomer(id: number) {
-//     return this.http.delete<Response>(`${this.baseUrl}deleteCustomer/${id}`);
-//   }
 
   logInUser(name: string, password: string): Observable<Response> {
     return this.http.get<Response>(
       `${this.baseUrl}logIn?name=${name}&&password=${password}`
     );
   }
+
+  getOtpToResetPassword(email:string | null|undefined): Observable<Response> {
+    return this.http.get<Response>(
+      `${this.baseUrl}getOtpToResetPassword?email=${email}`
+    );
+  }
+
+  validateOtpCode(otp:string| null | undefined): Observable<Response> {
+    return this.http.get<Response>(
+      `${this.baseUrl}validateOtpCode?otp=${otp}`
+    );
+  }
+
+
+  resetPassword(email:string,password:string): Observable<Response> {
+    return this.http.post<Response>(
+      `${this.baseUrl}resetPassword?email=${email}&password=${password}`,{}
+    );
+  }
+
 }
+
+

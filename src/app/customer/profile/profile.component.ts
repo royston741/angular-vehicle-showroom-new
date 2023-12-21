@@ -96,7 +96,7 @@ export class ProfileComponent {
   }
 
   validatePassword(value: string) {
-    return value.trim().length > 8;
+    return value.trim().length >= 8;
   }
 
   validateAddress(value: string) {

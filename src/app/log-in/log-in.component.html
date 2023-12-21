@@ -3,6 +3,7 @@
     <h1>Log in </h1>
 
     <app-input 
+        labelText="User name"
         [inputAttribute]="[{key:'type',value:'text'},{key:'placeholder',value:'User name'}]"
         errMssg="Invalid first name" 
         [validateInput]="validateName"
@@ -10,6 +11,7 @@
     </app-input>
 
     <app-input 
+        labelText="Password"
         [inputAttribute]="[{key:'type',value:'password'},{key:'placeholder',value:'password'}]"
         errMssg="Invalid password"
         [validateInput]="validatePassword"
@@ -21,13 +23,15 @@
     </div>
 
     <button 
+        class="form_btn"
         [ngClass]="!(formUserName.valid&&formPassword.valid)?'':'disable_btn'" 
         [disabled]="!(formUserName.valid&&formPassword.valid)">
         submit
     </button>
 
-    <p class="redirect">Don't have a account?
+    <p class="redirect">
         <a (click)="onNavigate()">Register.</a>
+        <a (click)="navigateService.navigateToGetOtp()">Forgot password.</a>
     </p>
     </form>
 </div>

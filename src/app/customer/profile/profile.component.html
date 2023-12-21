@@ -4,6 +4,7 @@
         <h1>Customer profile</h1>
 
         <app-input 
+            labelText="First name"
             [inputAttribute]="[{key:'type',value:'text'},{key:'placeholder',value:'Fitst name'}]"
             [inputValue]="formFirstName.value"
              [isDisabled]="disabled" 
@@ -13,6 +14,7 @@
         </app-input>
 
         <app-input
+            labelText="Last name"
             [inputAttribute]="[{key:'type',value:'text'},{key:'placeholder',value:'Last name'},{key:'value',value:formLastName.value}]"
             [inputValue]="formLastName.value" 
             [isDisabled]="disabled" 
@@ -22,6 +24,7 @@
         </app-input>
 
         <app-input
+            labelText="Email"
             [inputAttribute]="[{key:'type',value:'text'},{key:'placeholder',value:'Email'},{key:'value',value:formEmail.value}]"
             [inputValue]="formEmail.value" 
             [isDisabled]="disabled" 
@@ -31,6 +34,7 @@
         </app-input>
 
         <app-input
+            labelText="Phone no."
             [inputAttribute]="[{key:'type',value:'number'},{key:'placeholder',value:'phone'},{key:'value',value:formPhoneNo.value}]"
             [inputValue]="formPhoneNo.value" 
             [isDisabled]="disabled" 
@@ -40,6 +44,7 @@
         </app-input>
 
         <app-input
+            labelText="Password"
             [inputAttribute]="[{key:'type',value:'password'},{key:'placeholder',value:'password'},{key:'value',value:formPassword.value}]"
             errMssg="Invalid password" 
             [validateInput]="validatePassword" 
@@ -49,15 +54,21 @@
         </app-input>
 
         <div class="address_container">
-            <textarea 
-                [ngClass]="(!(formAddress.valid )==true)?'err':''"  
-                [disabled]="disabled" #address 
-                (keyup)="validateAddress(address.value)"
-                (blur)="validateAddress(address.value)" 
-                name="address"
-                [(ngModel)]="formAddress.value">
-            </textarea>
+            <label for="">Address          
+                <span class="required"> * </span>
+                <b class="colon">:</b>
+           </label>
+           <div class="input_and_error">
+                <textarea 
+                    [ngClass]="(!(formAddress.valid )==true)?'err':''"  
+                    [disabled]="disabled" #address 
+                    (keyup)="validateAddress(address.value)"
+                    (blur)="validateAddress(address.value)" 
+                    name="address"
+                    [(ngModel)]="formAddress.value">
+                </textarea>
                 <span class="err_mssg" *ngIf="!(formAddress.valid )">please enter valid address</span>
+            </div>
         </div>
 
         <p class="success_msg" *ngIf="responseSuccess">

@@ -44,6 +44,16 @@
             (inputEventEmmiter)="formPassword=$event">
         </app-input>
 
+        <app-input
+            labelText="Confirm password"
+            [inputAttribute]="[{key:'type',value:'password'},{key:'placeholder',value:'Confirm password'},{key:'value',value:formConfirmPassword.value}]"
+            errMssg="Password doesn't match"
+            [valueToCompare]="formPassword.value"
+            [validateInput]="validateConfirmPassword"
+            [inputValue]="formConfirmPassword.value"
+            (inputEventEmmiter)="formConfirmPassword=$event">
+        </app-input>
+
         <div  *ngIf="formFor==='CUSTOMER'" class="address_container">
             <label for="">Address          
                  <span class="required"> * </span>
@@ -70,7 +80,14 @@
         </div>
 
         <button
-            [disabled]="!(formFirstName.valid&&formLastName.valid&&formEmail.valid&&formPhoneNo.valid&&formPassword.valid&& formAddress.value.length>8)">submit</button>
+            [disabled]="!(
+                formFirstName.valid
+                &&formLastName.valid
+                &&formEmail.valid
+                &&formPhoneNo.valid
+                &&formPassword.valid
+                && formConfirmPassword.value==formPassword.value
+                && formAddress.value.length>8)">submit</button>
 
         <p *ngIf="formFor==='CUSTOMER'">Already have a account?
             <a (click)="onNavigate()">Log in.</a>

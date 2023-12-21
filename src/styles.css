@@ -46,9 +46,20 @@ a,button{
     height:120px;
 }
 
+input::-webkit-outer-spin-button,
+input::-webkit-inner-spin-button {
+  -webkit-appearance: none;
+  margin: 0;
+}
+
+/* Firefox */
+input[type=number] {
+  -moz-appearance: textfield;
+}
+
+
 .rotate{
     border-bottom: 4px solid var(--we-page-color) ;
-    /* background-color: red; */
     margin: 30px;
     border-radius: 50%;
     animation: rotation infinite 3s linear;

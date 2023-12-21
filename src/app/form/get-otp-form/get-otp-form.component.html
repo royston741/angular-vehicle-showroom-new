@@ -1,0 +1,36 @@
+<div class="align_center_screen">
+    <app-back-button></app-back-button>
+    <form class="form" [formGroup]="getOtpForm" *ngIf="!responseSuccess">
+        <h1>Reset Password</h1>
+        <div class="input_err_container" >
+            <div 
+                class="input_container" 
+                [ngClass]="(f['email'].errors && f['email'].touched) ? 'err_border':''">
+                <label *ngIf="isEmailTouched" class="input_label  {{isEmailTouched&& 'input_active'}}">Email</label>
+                <input 
+                    (click)="isEmailTouched=true" 
+                    formControlName="email" 
+                    type="text"
+                    placeholder="{{!isEmailTouched? 'Email':''}}"
+                    ngClass="{{isEmailTouched &&'input_is_active'}}"
+                    >
+            </div>
+            <p 
+                *ngIf="(f['email'].errors && f['email'].touched)" 
+                class="err_mssg">
+                please enter valid email.
+            </p>
+        </div>
+
+        <div class="errMssg" *ngIf="errMssg.length>0">
+            <p *ngFor="let err of errMssg">- {{err}}</p>
+        </div>
+
+        <button [disabled]="!getOtpForm.valid" (click)="onGetOtpClick()">
+            <p *ngIf="!isLoading">Get Otp</p>
+            <div *ngIf="isLoading" class="rotate_loader load_small"></div>
+        </button>
+    </form>
+
+ 
+</div>

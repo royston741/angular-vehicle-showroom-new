@@ -5,7 +5,7 @@ import { NavigateService } from '../services/navigate.service';
 
 @Component({
   selector: 'app-register-user',
-  templateUrl: './register-user.component.html',
+  templateUrl:'./register-user.component.html',
   styleUrls: ['./register-user.component.css','../log-in/log-in.component.css']
 })
 export class RegisterUserComponent implements OnInit {
@@ -17,9 +17,11 @@ export class RegisterUserComponent implements OnInit {
   formLastName = { value: '', valid: false }
   formEmail = { value: '', valid: false }
   formPhoneNo = { value: '', valid: false }
-  formPassword = { value: '', valid: false }
+  formPassword:{ value: string, valid: boolean } = { value: '', valid: false }
+  formConfirmPassword = { value: '', valid: false }
   formAddress = { value: '', valid: true }
 
+  valueToCompare=this.formPassword.value
   responseSuccess = false;
   responseErrorMessage = [];
 
@@ -78,7 +80,12 @@ export class RegisterUserComponent implements OnInit {
   }
 
   validatePassword(value: string) {
-    return value.trim().length > 8;
+    return value.trim().length >= 8;
+  }
+
+  validateConfirmPassword(value:{value:string,valueToCompare:string}) {
+    console.log("Confirm password"+value.value+" "+value.valueToCompare)
+    return value.value==value.valueToCompare;
   }
 
   validateAddress(value: string) {
@@ -91,6 +98,7 @@ export class RegisterUserComponent implements OnInit {
     this.formEmail = { value: '', valid: false }
     this.formPhoneNo = { value: '', valid: false }
     this.formPassword = { value: '', valid: false }
+    this.formConfirmPassword = { value: '', valid: false }
     this.formAddress = { value: '', valid: true }
   }
 }

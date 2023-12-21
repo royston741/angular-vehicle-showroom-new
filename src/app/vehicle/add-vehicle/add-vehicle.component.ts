@@ -50,6 +50,7 @@ export class AddVehicleComponent {
       this.twoWheelerTypeList = [...listOfTwoWheelerType];
     })
     this.vehicleId = this.activeRoute.snapshot.params["id"];
+    
     if (this.vehicleId > 0) {
       this.vehicleService.getVehicleById(this.vehicleId).subscribe({
         next: (response) => {
