@@ -48,16 +48,19 @@ export class ResetPasswordFormComponent {
     this.errMssg = []
     this.responseSuccess = false
     this.isLoading = true
+
     const email = this.storageService.getItem("emaiUsedToReset")
-    const password=this.password.value;
-    this.userService.resetPassword(email,password).subscribe({
-      next:(response)=>{
-        this.responseSuccess= response.success;
+    const password = this.password.value;
+
+    this.userService.resetPassword(email, password).subscribe({
+      next: (response) => {
+        this.responseSuccess = response.success;
+        this.responseSuccess && this.storageService.removeItem("emaiUsedToReset")
         this.navigateService.navigateToLogin()
       },
-      error:(err)=>{
-        this.errMssg= err.errMssg
-        this.isLoading=false
+      error: (err) => {
+        this.errMssg = err.errMssg
+        this.isLoading = false
       }
     })
   }

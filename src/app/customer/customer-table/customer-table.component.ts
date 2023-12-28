@@ -100,7 +100,7 @@ export class CustomerTableComponent {
   handelSorting(sort: { direction: string; column: string }) {
     this.sort.column = sort.column;
     this.sort.direction = sort.direction;
-    this.getData(0);
+    this.getData(this.page.currentPage);
   }
 
   handelFilter(filter: string) {

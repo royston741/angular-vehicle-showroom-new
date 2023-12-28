@@ -63,9 +63,9 @@ export class UserService {
     );
   }
 
-  validateOtpCode(otp:string| null | undefined): Observable<Response> {
+  validateOtpCode(otp:string| null | undefined,email:String): Observable<Response> {
     return this.http.get<Response>(
-      `${this.baseUrl}validateOtpCode?otp=${otp}`
+      `${this.baseUrl}validateOtpCode?otp=${otp}&&email=${email}`
     );
   }
 

@@ -8,7 +8,21 @@
       (selectEventEmitter)="onSelectTwoWheelerType($event)"></app-select>
   </div>
 
-  <div class="vehicles_table">
+  <div>
+    <input
+      class="search_bar"
+      type="text"
+      [(ngModel)]="filter.filterValue"
+      placeholder="Search by Vehicle name"
+      (keyup)="onFilterBtnClick()"
+    />
+  </div>
+
+  <div *ngIf="errMssg.length > 0">
+    <p *ngFor="let err of errMssg" class="err">{{ err }}</p>
+  </div>
+  
+  <div class="vehicles_table" >
     <h3 *ngIf="isLoading" style="margin-top: 40px;">Loading...</h3>
     <app-table 
       [pageConfig]="page" 
@@ -20,14 +34,16 @@
       (pageSizeChangeEvent)="onPageSizeChange($event)" 
       viewFor="details" 
       [enableEditBtn]="true"
-      ></app-table>
+    ></app-table>
   </div>
 
-  <app-pagination-controls 
+  <app-pagination-controls
+  *ngIf="errMssg.length==0"
+  
      [includePageSize]="true" 
      [page]="page" 
      (pageSizeChangeEvent)="onPageSizeChange($event)"
      (pageChangeEvent)="getData($event)">
-    </app-pagination-controls>
+  </app-pagination-controls>
 
 </div>

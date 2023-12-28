@@ -19,7 +19,8 @@ export class VehiclesTableComponent implements OnInit {
     vehicleType: "",
     twoWheelerType: "",
     startingPrice: 0,
-    endingPrice: 0
+    endingPrice: 0,
+    filterValue:""
   }
 
   page = {
@@ -88,7 +89,9 @@ export class VehiclesTableComponent implements OnInit {
       this.filter.startingPrice,
       this.filter.endingPrice,
       this.filter.vehicleType,
-      this.filter.twoWheelerType).subscribe({
+      this.filter.twoWheelerType,
+      this.filter.filterValue,
+      ).subscribe({
         next: (response) => {
           const vehicles: Vehicle[] = response.responseData.content;
           this.vehicles = vehicles.map(vehicle => {
@@ -156,4 +159,7 @@ export class VehiclesTableComponent implements OnInit {
     this.getAllVehiclesData(0)
   }
 
+  onFilterBtnClick(){
+    this.getData(0)
+  }
 }

@@ -36,7 +36,7 @@ export class SubmitOtpFormComponent implements OnInit {
 
   onNext() {
     this.errMssg = []
-    this.userService.validateOtpCode(this.validateOtpForm.value.otp).subscribe({
+    this.userService.validateOtpCode(this.validateOtpForm.value.otp,this.email).subscribe({
       next: (response) => {
         if (response.success) {
           this.navigateService.navigateToResetPassword()

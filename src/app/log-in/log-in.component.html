@@ -5,7 +5,7 @@
     <app-input 
         labelText="User name"
         [inputAttribute]="[{key:'type',value:'text'},{key:'placeholder',value:'User name'}]"
-        errMssg="Invalid first name" 
+        errMssg="Invalid User name" 
         [validateInput]="validateName"
         (inputEventEmmiter)="formUserName=$event">
     </app-input>
@@ -31,7 +31,7 @@
 
     <p class="redirect">
         <a (click)="onNavigate()">Register.</a>
-        <a (click)="navigateService.navigateToGetOtp()">Forgot password.</a>
+        <a (click)="navigateService.navigateToGetOtp()">Forgot password ?</a>
     </p>
     </form>
 </div>

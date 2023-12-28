@@ -20,6 +20,7 @@
   <div *ngIf="errMssg.length > 0">
     <p *ngFor="let err of errMssg" class="err">{{ err }}</p>
   </div>
+  
   <app-table 
     [pageConfig]="page" 
     [dataList]="customers" 

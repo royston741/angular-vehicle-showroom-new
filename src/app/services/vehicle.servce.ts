@@ -39,8 +39,9 @@ export class VehicleService {
     endPrice: number,
     vehicleType: string,
     twoWheelerType: string,
+    filterValue:string
   ): Observable<Response> {
-    return this.http.get<Response>(`${this.baseUrl}getAllVehicles?column=${column}&direction=${direction}&startPrice=${startPrice}&endPrice=${endPrice}&vehicleType=${vehicleType}&twoWheelerType=${twoWheelerType}&pageSize=${pageSize}&pageNumber=${pageNo}`);
+    return this.http.get<Response>(`${this.baseUrl}getAllVehicles?column=${column}&direction=${direction}&startPrice=${startPrice}&endPrice=${endPrice}&vehicleType=${vehicleType}&twoWheelerType=${twoWheelerType}&pageSize=${pageSize}&pageNumber=${pageNo}&filterValue=${filterValue}`);
   }
 
 

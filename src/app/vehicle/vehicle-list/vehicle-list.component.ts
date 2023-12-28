@@ -27,7 +27,8 @@ export class VehicleListComponent implements OnInit {
     vehicleType: "",
     twoWheelerType: "",
     startingPrice: 0,
-    endingPrice: 0
+    endingPrice: 0,
+    filterValue:""
   }
 
   vehicleTypeList: string[] = ["ALL"];
@@ -86,7 +87,8 @@ export class VehicleListComponent implements OnInit {
       this.filter.startingPrice,
       this.filter.endingPrice,
       this.filter.vehicleType,
-      this.filter.twoWheelerType).subscribe({
+      this.filter.twoWheelerType,
+      this.filter.filterValue).subscribe({
         next: (response) => {
           this.vehicles = response.responseData.content;
           this.page.itemsPerPage = response.responseData.pageable.pageSize;
