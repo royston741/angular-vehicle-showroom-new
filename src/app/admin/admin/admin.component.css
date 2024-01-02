@@ -1,87 +1,94 @@
   /* @import url('https://fonts.googleapis.com/css2?family=Cairo+Play:wght@400;500;600;700;800&display=swap'); */
 
-  .main{
+  .main {
     display: flex;
   }
 
   nav,
   nav ul {
-      /* display: flex; */
+    /* display: flex; */
   }
+
+  header {
+    background-color: var(--we-page-color);
+    position: absolute;
+    display: flex;
+    height: 100%;
+    box-shadow: rgba(17, 12, 46, 0.15) 0px 48px 100px 0px; 
+  z-index: 2; }
 
   nav {
-      padding: 5px 0px;
-      background-color: var(--we-page-color);
-      /* display: grid;
+    padding: 5px 0px;
+    /* display: grid;
       grid-template-columns: 3fr 1fr; */
-      justify-content: space-between;
-      height: 100vh;
-      width: 340px;
-      text-align: center;
+    justify-content: space-between;
+    height: 100vh;
+    width: 340px;
+    text-align: center;
   }
 
-  .heading_menu {
-      /* display: flex; */
+  .heading_menu h1{
+    font-size: 1.6rem;
   }
 
   nav h1 {
-      font-size: 2rem;
-      font-family: 'Cairo Play', sans-serif;
-      font-style: italic;
-      color: white;
+    font-size: 2rem;
+    font-family: 'Cairo Play', sans-serif;
+    font-style: italic;
+    color: white;
   }
 
   .menu {
-      display: flex;
-      flex-direction: column;
-      /* justify-content: space-between; */
-      /* align-items: center; */
-      color: white;
-      font-weight: 500;
-      font-size: 1rem;
-      margin: 20px 0;
-      /* margin-left: 100px; */
+    display: flex;
+    flex-direction: column;
+    /* justify-content: space-between; */
+    /* align-items: center; */
+    color: white;
+    font-weight: 500;
+    font-size: 1rem;
+    margin: 20px 0;
+    /* margin-left: 100px; */
   }
 
   .menu li {
-      margin: 20px 8px;
-      color: white;
-      /* padding: 18px 10px; */
+    margin: 20px 8px;
+    color: white;
+    /* padding: 18px 10px; */
   }
 
   .active {
     background-color: rgb(14, 14, 240);
-      /* border-bottom: 3px solid white; */
+    /* border-bottom: 3px solid white; */
   }
 
   .profile_container {
-      /* display: flex;
+    /* display: flex;
       justify-content: center;
       align-items: center; */
   }
 
   .profile_container li {
-      margin: 0 30px;
+    margin: 0 30px;
   }
 
   .profile {
     cursor: pointer;
-      color: white;
-      border: 2px solid white;
-      padding: 8px 20px;
-      border-radius: 4px;
-      /* display: flex;
+    color: white;
+    border: 2px solid white;
+    padding: 8px 20px;
+    border-radius: 4px;
+    /* display: flex;
       align-items: center;
       justify-content: space-between; */
-      font-size: 1.2rem;
+    font-size: 1.2rem;
   }
 
   .profile span {
-      font-size: 1.2rem;
-      /* margin-left: 10px; */
+    font-size: 1.2rem;
+    /* margin-left: 10px; */
   }
 
-  .log_out_btn{
+  .log_out_btn {
     padding: 12px;
     border: none;
     font-weight: 700;
@@ -89,9 +96,35 @@
     color: var(--we-page-color);
   }
 
-  .center{
+  .center {
     display: flex;
     justify-content: center;
     align-items: center;
     width: 100%;
+  }
+
+
+  .heading_cancel_btn_container {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 0 15px;
+  }
+
+  .cancel_btn{
+    background: transparent;
+    border: none;
+    color: white;  
+  }
+
+  .cancel_btn span{
+    font-size: 2rem;
+  }
+
+  .hamburger_menu {
+    background: transparent;
+    font-size: 1rem;
+    border: none;
+    color: white;
+    padding: 10px;
   }

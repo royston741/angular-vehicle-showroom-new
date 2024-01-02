@@ -9,7 +9,7 @@ table {
   /* display: flex; */
   /* width: 100%; */
   /* flex-direction: column; */
-  height: 25em;
+  /* height: 25em; */
 }
 
 .overflow {
@@ -150,7 +150,7 @@ table td {
   display: flex;
 }
 
-.column_with_sort{
+.column_with_sort {
   display: flex;
   justify-content: center;
   align-items: center;
@@ -175,7 +175,14 @@ table td {
   cursor: pointer;
 }
 
-
+.table_box {
+  text-align: center;
+  height: 40vh;
+  width: 90vw;
+  margin: 0 auto;
+  display: flex;
+  justify-content: center;
+}
 
 @media screen and (max-width: 1560px) {
   .overflow_vehicle {
@@ -200,7 +207,7 @@ table td {
 
 tbody {
   display: block;
-  max-height:20em;
+  max-height: 19em;
   overflow-y: auto;
   overflow-x: hidden;
 }
@@ -222,4 +229,12 @@ table {
 td,
 th {
   width: 240px;
+}
+
+@media screen and (max-width: 1400px) {
+  .table_box{
+    display: unset;
+    max-width: 80%;
+    overflow-y: scroll;
+  }
 }

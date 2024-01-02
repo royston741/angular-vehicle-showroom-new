@@ -1,8 +1,16 @@
 <div class="main">
     <header>
-        <nav>
+        <nav *ngIf="toggleActive">
             <div class="heading_menu">
-                <h1>MyDrive</h1>
+                <div class="heading_cancel_btn_container">
+                    <h1>MyDrive</h1>
+                    <button class="cancel_btn" (click)="toggleActive=!toggleActive">
+                        <span class="material-symbols-outlined">
+                            close
+                        </span>
+                    </button>
+                </div>
+
                 <ul class="menu">
                     <a (click)="navigateService.navigateToAdminHome()" routerLink="/admin/allCustomers"
                         routerLinkActive="active">
@@ -22,19 +30,16 @@
             </div>
 
             <ul class="profile_container">
-                <!-- <li class="profile" (click)="navigateService.navigateToCustomerProfile()">
-                <p>
-                    {{name}}
-                </p>
-                <span class="material-symbols-outlined">
-                    person
-                </span>
-            </li> -->
                 <li>
                     <button class="log_out_btn" (click)="logOut()">Log out</button>
                 </li>
             </ul>
         </nav>
+        <div class="ham_menu_container" *ngIf="!toggleActive" (click)="toggleActive=!toggleActive">
+            <button class="hamburger_menu">
+                <span class="material-symbols-outlined">arrow_forward_ios </span>
+            </button>
+        </div>
     </header>
     <div class="center">
         <router-outlet></router-outlet>

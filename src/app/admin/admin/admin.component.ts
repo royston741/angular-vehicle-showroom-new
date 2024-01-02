@@ -11,7 +11,7 @@ import { UserService } from 'src/app/services/user.service';
 })
 export class AdminComponent {
   name!: string;
-
+  toggleActive=false;
   constructor(private customerService: UserService, private router: Router, private storageService: StorageService, public navigateService: NavigateService) { }
 
   ngOnInit() {

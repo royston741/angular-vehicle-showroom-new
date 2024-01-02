@@ -1,7 +1,8 @@
 <div *ngIf="errMssg.length > 0">
   <p *ngFor="let err of errMssg" class="err">{{ err }}</p>
 </div>
-<h3 style="margin-top: 30px;text-align: center;" *ngIf="vehicles.length==0">No vehicles to show.</h3>
+<h3 style="margin-top: 30px;text-align: center;"
+ *ngIf="vehicles.length==0">No vehicles to show.</h3>
 
 <app-table
   [pageConfig]="page"
@@ -13,6 +14,7 @@
   (actionEvent)="handelActions($event)"
   viewFor="order"
 ></app-table>
+
 <app-pagination-controls 
   (pageSizeChangeEvent)="onPageSizeChange($event)" 
   [includePageSize]="true" 

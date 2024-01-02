@@ -13,9 +13,11 @@ import { Vehicle } from "src/shared/model/Vehicle";
             <div class="view_vehicle_img">
                 <img src={{vehicle.vehicleImg}} alt={{vehicle.name}}>
             </div>
-
             <p>
                 <b>Name :</b> {{vehicle.name}}
+            </p>
+            <p>
+                <b>Rating :</b> {{vehicle.rating}}
             </p>
             <p>
                 <b>Vehicle type :</b> {{vehicle.vehicleType}}
@@ -24,14 +26,13 @@ import { Vehicle } from "src/shared/model/Vehicle";
                 <b>TwoWheeler type :</b> {{vehicle.twoWheelerType}}
             </p>
             <p>
-                <b>Description :</b> {{vehicle.description}}
-            </p>
-            <p>
                 <b>Price :</b> {{vehicle.price | currency:'INR'}}
             </p>
+      
             <p>
-                <b>Rating :</b> {{vehicle.rating}}
+                <b>Description :</b> {{vehicle.description}}
             </p>
+       
         </div>
     </div>`,
     styleUrls: ['./vehicles-table.component.css']

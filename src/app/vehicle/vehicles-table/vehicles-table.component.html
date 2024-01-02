@@ -8,7 +8,7 @@
       (selectEventEmitter)="onSelectTwoWheelerType($event)"></app-select>
   </div>
 
-  <div>
+  <div class="search_bar_container">
     <input
       class="search_bar"
       type="text"
@@ -16,6 +16,9 @@
       placeholder="Search by Vehicle name"
       (keyup)="onFilterBtnClick()"
     />
+    <span class="material-symbols-outlined">
+      search
+      </span>
   </div>
 
   <div *ngIf="errMssg.length > 0">
@@ -23,7 +26,7 @@
   </div>
   
   <div class="vehicles_table" >
-    <h3 *ngIf="isLoading" style="margin-top: 40px;">Loading...</h3>
+    <h3 *ngIf="isLoading" style="margin-top: 40px;text-align: center;">Loading...</h3>
     <app-table 
       [pageConfig]="page" 
       [dataList]="vehicles" 
@@ -38,8 +41,7 @@
   </div>
 
   <app-pagination-controls
-  *ngIf="errMssg.length==0"
-  
+    *ngIf="errMssg.length==0"
      [includePageSize]="true" 
      [page]="page" 
      (pageSizeChangeEvent)="onPageSizeChange($event)"
